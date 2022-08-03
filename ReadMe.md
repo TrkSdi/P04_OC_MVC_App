@@ -4,7 +4,7 @@
 # Objets :
 Objets identifiés :
 
-## SCHEMA TOURNOI
+## MODELE TOURNOI
 
 ### Attribut d'instance :
 
@@ -14,11 +14,13 @@ Objets identifiés :
     > Date fin
     > Joueurs = []
     > Description
+    > Tour = NOMBRE_TOUR_DEFAULT par défaut
+    > Temps = coup rapide / blitz / bullet = choisir type de coup
 
 ### Attribut de classe
 
-    > Tour = 4
-    > Temps = 60 (1 minute)
+    > NOMBRE_TOUR_DEFAULT = 4 
+    
 
 ### Méthode d'instance 
 
@@ -43,6 +45,7 @@ Objets identifiés :
 
 #### Sauvegarde
 
+    
     > Sauvegarde / Tour 
 
 ## JOUEURS
@@ -67,7 +70,7 @@ Objets identifiés :
 
 # Main 
 
-> Créer nouveau tournoir 
+> Créer nouveau tournoi 
 > Instancier + Ajout joueurs 
 > Création pairs
 > Tour 1
@@ -89,8 +92,7 @@ Objets identifiés :
 > Saisir résultats
 > Sauvegarde
 > Mise à jour classement
-
-> Sauvegarde ?
+> Sauvegarde
 
 
 

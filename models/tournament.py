@@ -1,4 +1,4 @@
-from players import Players
+from models.players import Players
 
 class Tournament(Players):
     rounds = 4
