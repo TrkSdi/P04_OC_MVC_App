@@ -13,6 +13,6 @@ class Player():
 
     
 
-    def __str__(self):
+    def __repr__(self):
         return f"{self.f_name} {self.l_name} \n{self.birth_date} - {self.gender} \nRank = {self.rank}"
     

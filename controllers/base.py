@@ -28,11 +28,6 @@ class Controller:
         player = Player(last_name, first_name, birth_date, gender, rank)
         return player
     
-    def add_players_to_list(self, player):
-        return self.players.append(player)
-        
-        
-    
     
     def run(self):
         MAX_NUM_PLAYERS = 2
@@ -41,10 +36,11 @@ class Controller:
         while len(self.players) < MAX_NUM_PLAYERS:    
             self.view.display_player()
             self.players.append(Player)
-            print(self.players)
+            
         
-        #def generate_pairs_methode_1():
-        # for player in self.players
+        
+        for player in self.players:
+            print(player)
         
         
         #while round < 4
