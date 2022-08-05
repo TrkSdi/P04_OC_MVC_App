@@ -1,6 +1,6 @@
-from models.players import Players
 
-class Tournament(Players):
+
+class Tournament():
     rounds = 4
     time = 1
     

@@ -1,50 +1,63 @@
+from models.tournament import Tournament
 from models.players import Player
 
 
 class Controller:
-    
-    def __init__(self):
+    def __init__(self, view):
         self.players = []
-     
-    def add_player(self):    
-        while len(self.players) < 8:
-                f_name = self.view.prompt_for_player()
-                l_name = self.view.prompt_for_player()
-                birth_date = self.view.prompt_for_player()
-                gender = self.view.prompt_for_player()
-                rank = self.view.prompt_for_player()
-                
-                player = Player(f_name, l_name, birth_date, gender, rank)
-                self.players.append(player)
+        self.view = view
+        
     
+    def start_tournament(self):
+        tournament_name = self.view.display_tournament()
+        place = self.view.display_tournament()
+        start_date = self.view.display_tournament()
+        end_date = self.view.display_tournament()
+        description = self.view.display_tournament()
+        
+        tournament = Tournament(tournament_name, place, start_date, end_date, description)
+        return tournament
+        
+    def add_players(self):
+        last_name = self.view.display_player()
+        first_name = self.view.display_player()
+        birth_date = self.view.display_player()
+        gender = self.view.display_player()
+        rank = self.view.display_player()        
     
-
+        player = Player(last_name, first_name, birth_date, gender, rank)
+        return player
     
-    
-    
-    
+    def add_players_to_list(self, player):
+        return self.players.append(player)
+        
+        
     
     
     def run(self):
-        # On rajoute les joueurs
-        self.add_player()
+        MAX_NUM_PLAYERS = 2
+        self.view.display_tournament()
+              
+        while len(self.players) < MAX_NUM_PLAYERS:    
+            self.view.display_player()
+            self.players.append(Player)
+            print(self.players)
         
-        # On commence le jeu et définissons les pairs
-        self.start_game()
-            for player in self.players:
-                self.view.create_pairs()
+        #def generate_pairs_methode_1():
+        # for player in self.players
         
-        round = 0 
-        while round < 4:
-            # On entre les résultat
-            self.enter_result()
-
-            # On rajoute le score 
-            self.add_score()
-            
-            # On crée des nouvelles pairs
-            self.create_pairs_tour2()
-            
-            round += 1
+        
+        #while round < 4
+        
+        #def generate_match():
+        
+        
+        #def add_scores():
+        
+        #def new_ranking
+        
+        #round -= 1
+        
+        #def generate_pairs_method_2()
             
         

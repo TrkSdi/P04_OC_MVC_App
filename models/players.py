@@ -16,11 +16,3 @@ class Player():
     def __str__(self):
         return f"{self.f_name} {self.l_name} \n{self.birth_date} - {self.gender} \nRank = {self.rank}"
     
-    
-    
-
-
-"""
-p1 = Players("Tarik", "Sadkhi", "19/05/1983", "Male")
-p2 = Players("Fanny", "Pezet", "19/12/1994", "Female")
-"""
