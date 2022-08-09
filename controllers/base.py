@@ -19,31 +19,40 @@ class Controller:
         return tournament
         
     def add_players(self):
-        last_name = self.view.display_player()
-        first_name = self.view.display_player()
-        birth_date = self.view.display_player()
-        gender = self.view.display_player()
-        rank = self.view.display_player()        
-    
-        player = Player(last_name, first_name, birth_date, gender, rank)
-        return player
-    
+        MAX_NUM_PLAYERS = 3
+        while len(self.players) <= MAX_NUM_PLAYERS:
+            last_name = self.view.display_player()
+            first_name = self.view.display_player()
+            birth_date = self.view.display_player()
+            gender = self.view.display_player()
+            rank = self.view.display_player() 
+            
+            player = Player(last_name, first_name, birth_date, gender, rank)
+            self.players.append(player)      
+        
+         
     
     def run(self):
-        MAX_NUM_PLAYERS = 2
-        self.view.display_tournament()
-              
-        while len(self.players) < MAX_NUM_PLAYERS:    
-            self.view.display_player()
-            self.players.append(Player)
-            
         
         
-        for player in self.players:
-            print(player)
+        #self.view.display_tournament()
+           
         
+        self.view.display_player()
+        print(self.players)
+        
+        # vérifier ajout de liste 
+        # Itérer dans la liste pour création de pairs    
         
         #while round < 4
+        # def generate pairs
+        # assigner des id à chaque joueurs 
+        # trier en fonction de l'id 
+        #for player in self.players:
+        #   print(player)
+        
+        
+        
         
         #def generate_match():
         

@@ -18,4 +18,4 @@ class View:
         birth_date = input("Entrez la date de naissance du jouer: ")
         gender = input("Entrez le sexe du joueur: ")
         rank = input("Entrez son classement: ")
-        return last_name, first_name, birth_date, gender, rank
+        
