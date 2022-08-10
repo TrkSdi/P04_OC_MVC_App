@@ -19,18 +19,23 @@ class Controller:
         return tournament
         
     def add_players(self):
-        MAX_NUM_PLAYERS = 3
-        while len(self.players) <= MAX_NUM_PLAYERS:
-            last_name = self.view.display_player()
-            first_name = self.view.display_player()
-            birth_date = self.view.display_player()
-            gender = self.view.display_player()
-            rank = self.view.display_player() 
-            
-            player = Player(last_name, first_name, birth_date, gender, rank)
-            self.players.append(player)      
+        MAX_NUM_PLAYERS = 8
+        while len(self.players) < MAX_NUM_PLAYERS:
+            data = self.view.input_player()
+            player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"])
+            self.players.append(player)
         
-         
+    def generate_pairs_1(self):
+        sorted_list = sorted(self.players, key=lambda x: x.rank)
+        pairs = [
+            (sorted_list[0], sorted_list[4]),
+            (sorted_list[1], sorted_list[5]),
+            (sorted_list[2], sorted_list[6]),
+            (sorted_list[3], sorted_list[7])
+        ]
+        
+        return print(pairs)
+    
     
     def run(self):
         
@@ -38,11 +43,9 @@ class Controller:
         #self.view.display_tournament()
            
         
-        self.view.display_player()
-        print(self.players)
-        
-        # vérifier ajout de liste 
-        # Itérer dans la liste pour création de pairs    
+        self.add_players()
+        self.generate_pairs_1()
+            
         
         #while round < 4
         # def generate pairs
