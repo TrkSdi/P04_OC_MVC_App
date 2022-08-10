@@ -12,10 +12,16 @@ class View:
         return tournament_name, place, start_date, end_date, description
     
     
-    def display_player(self):
+    def input_player(self):
         last_name = input("Entrez le prénom du joueur: ")
         first_name = input("Entrez le nom du joueur: ")
         birth_date = input("Entrez la date de naissance du jouer: ")
         gender = input("Entrez le sexe du joueur: ")
         rank = input("Entrez son classement: ")
-        
+        return {
+            "Last Name": last_name,
+            "First Name": first_name,
+            "Birth Date": birth_date,
+            "Gender": gender,
+            "Rank": rank
+        }
