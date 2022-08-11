@@ -2,6 +2,24 @@
 
 class View:
     
+    def main_menu(self):
+        print("")
+        print("Bienvenue au tournoi d'échecs")
+        print("")
+        print("1 - Tournois")
+        print("2 - Joueurs")
+        print("3 - Rapports")
+        print("0 - Quitter")
+        print("")
+        return input("Faites votre choix: ")
+    
+    def tournament_menu(self):
+        print("")
+        print("1 - Commencer un nouveau tournoi")
+        print("2 - Menu principal")
+        print("")
+        return input("Faites votre choix: ")
+    
     def input_tournament(self):
         print("Bienvenue dans le tournoi d'échecs")
         tournament_name = input("Entrez le nom du tournoi: ")
@@ -9,7 +27,13 @@ class View:
         start_date = input("Indiquez la date de début: ")
         end_date = input("Indiquez la date de fin: ")
         description = input("Entrez une description: ")
-        return tournament_name, place, start_date, end_date, description
+        return {
+            "tournament_name": tournament_name,
+            "place": place,
+            "start_date": start_date,
+            "end_date": end_date,
+            "description": description       
+        }
     
     
     def input_player(self):
