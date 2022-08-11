@@ -1,5 +1,6 @@
 from models.tournament import Tournament
 from models.players import Player
+import sys
 
 
 class Controller:
@@ -40,7 +41,7 @@ class Controller:
         pass
     
     def quit_program(self):
-        pass
+        return sys.exit()
     
     def start_tournament(self):
         tournament_name = self.view.input_tournament()
