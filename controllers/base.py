@@ -12,7 +12,7 @@ class Controller:
         while True:
             option = self.view.main_menu()
             if option == str(1):
-                self.tournament_menu()   
+                self.tournament_program()   
             elif option == str(2):
                 self.players_menu()
             elif option == str(3):
@@ -22,7 +22,7 @@ class Controller:
             else:
                 print("Entrez un choix valide")
         
-    def tournament_menu(self):
+    def tournament_program(self):
         while True:
             option = self.view.tournament_menu()
             if option == str(1):
@@ -85,9 +85,6 @@ class Controller:
         self.launch_program()
         
     
-        
-        #self.generate_pairs_1()
-            
         
         #while round < 4
         # def generate pairs
