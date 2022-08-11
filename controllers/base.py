@@ -10,7 +10,7 @@ class Controller:
         self.view = view
         
     def launch_program(self):
-        while True:
+        #while True:
             option = self.view.main_menu()
             if option == str(1):
                 self.tournament_program()   
@@ -24,7 +24,7 @@ class Controller:
                 print("Entrez un choix valide")
         
     def tournament_program(self):
-        while True:
+        #while True:
             option = self.view.tournament_menu()
             if option == str(1):
                 self.start_tournament()
@@ -51,7 +51,7 @@ class Controller:
         description = self.view.input_tournament()
         tournament = Tournament(tournament_name, place, start_date, end_date, description)
         self.tournaments.append(tournament)
-        self.add_players()
+        
         
     def add_players(self):
         MAX_NUM_PLAYERS = 8
@@ -84,6 +84,7 @@ class Controller:
     def run(self):
            
         self.launch_program()
+        self.add_players()
         
     
         
