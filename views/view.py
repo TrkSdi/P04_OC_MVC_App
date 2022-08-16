@@ -27,12 +27,18 @@ class View:
         start_date = input("Indiquez la date de début: ")
         end_date = input("Indiquez la date de fin: ")
         description = input("Entrez une description: ")
+        number_round = input("Entre le nombre de tours, sinon 4 par défaut: ")
+        if number_round == "":
+            number_round = 4
+        else:
+            number_round = int(number_round)
         return {
             "tournament_name": tournament_name,
             "place": place,
             "start_date": start_date,
             "end_date": end_date,
-            "description": description       
+            "description": description,
+            "number_round": number_round       
         }
     
     

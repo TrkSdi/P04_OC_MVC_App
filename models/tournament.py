@@ -1,39 +1,18 @@
 
 
 class Tournament():
-    rounds = 4
-    time = 1
     
-    def __init__(self, name, place, description, start_date, end_date=None):
+    def __init__(self, name, place, start_date, end_date, description, number_round=4):
         self.name = name
         self.place = place
         self.start_date  = start_date
         self.end_date = end_date
         self.players = []
         self.description = description
+        self.rounds = []
+        self.number_round = number_round
+
+    def __repr__(self):
+        return f"(Nom: {self.name}, Nombre de tours: {self.number_round})"
 
     
-    def create_tournament(self):
-        pass    # Instanciation directe ? 
-    
-    @staticmethod
-    def add_players():
-        pass
-    
-    @staticmethod
-    def generate_pairs_1(players):
-        pass
-   
-    @staticmethod
-    def generate_pairs_2(players):
-        pass
-    
-    @classmethod
-    def add_result(cls):
-        pass
-    
-    @staticmethod
-    def save_result():
-        pass
-    
-tournament_1 = Tournament("Le grand tournoi", "Paris", "Bonne ambiance", "22/10/2022")

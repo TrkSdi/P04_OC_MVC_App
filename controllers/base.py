@@ -1,5 +1,7 @@
 from models.tournament import Tournament
 from models.players import Player
+from models.round import Round
+from datetime import datetime
 import sys
 
 
@@ -10,7 +12,7 @@ class Controller:
         self.view = view
         
     def launch_program(self):
-        #while True:
+        while True:
             option = self.view.main_menu()
             if option == str(1):
                 self.tournament_program()   
@@ -24,11 +26,11 @@ class Controller:
                 print("Entrez un choix valide")
         
     def tournament_program(self):
-        #while True:
+        while True:
             option = self.view.tournament_menu()
-            if option == str(1):
+            if option == "1":
                 self.start_tournament()
-            elif option  == str(2):
+            elif option  == "2":
                 self.launch_program()
             else:
                 print("Entrez un choix valide")
@@ -44,47 +46,50 @@ class Controller:
         return sys.exit()
     
     def start_tournament(self):
-        tournament_name = self.view.input_tournament()
-        place = self.view.input_tournament()
-        start_date = self.view.input_tournament()
-        end_date = self.view.input_tournament()
-        description = self.view.input_tournament()
-        tournament = Tournament(tournament_name, place, start_date, end_date, description)
-        self.tournaments.append(tournament)
+        data = self.view.input_tournament()
+        self.current_tournament = Tournament(data["tournament_name"], data["place"], data["start_date"], data["end_date"], data["description"], data["number_round"]) 
+        print(self.current_tournament)
+        self.add_players()
+        while self.current_tournament.number_round == len(self.current_tournament.rounds):
+            self.start_round()
+            
         
+    def start_round(self):
+        if len(self.current_tournament.rounds) == 0:
+            # c'est le premier round
+            round = Round("Round 1", datetime.now())
+            matchs = self.generate_pairs_round_1()
+            for match in matchs:
+                print(match)
+            self.current_tournament.rounds.append(round)
+        else:
+            # Autres rounds
+            
+            pass
+            
         
     def add_players(self):
         MAX_NUM_PLAYERS = 8
-        while len(self.players) < MAX_NUM_PLAYERS:
+        while len(self.current_tournament.players) < MAX_NUM_PLAYERS:
             data = self.view.input_player()
             player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"])
-            self.players.append(player)
+            self.current_tournament.players.append(player)
+        print(self.current_tournament.players)
         
-    def generate_pairs_1(self):
-        sorted_list = sorted(self.players, key=lambda x: x.rank)
-        players_id = {
-            "Player_01": sorted_list[0],
-            "Player_02": sorted_list[1],
-            "Player_03": sorted_list[2],
-            "Player_04": sorted_list[3],
-            "Player_05": sorted_list[4],
-            "Player_06": sorted_list[5],
-            "Player_07": sorted_list[6],
-            "Player_08": sorted_list[7],
-        }
-        pairs_list = [
-            ("Player_01", "Player_05"),
-            ("Player_02", "Player_06"),
-            ("Player_03", "Player_07"),
-            ("Player_04", "Player_08")
-        ]
-        return pairs_list
+        
+    def generate_pairs_round_1(self):
+        sorted_list = sorted(self.current_tournament.players, key=lambda x: x.rank)
+        paired_list = [(sorted_list[0], sorted_list[4]),
+                       (sorted_list[1], sorted_list[5]),
+                       (sorted_list[2], sorted_list[6]),
+                       (sorted_list[3], sorted_list[7])]
+        return paired_list
     
     
     def run(self):
            
         self.launch_program()
-        self.add_players()
+        
         
     
         
