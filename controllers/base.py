@@ -79,7 +79,7 @@ class Controller:
         MAX_NUM_PLAYERS = 4
         while len(self.current_tournament.players) < MAX_NUM_PLAYERS:
             data = self.view.input_player()
-            player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"], data["score"])
+            player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"])
             self.current_tournament.players.append(player)
         # Vérification des données des joueurs
         #for player in self.current_tournament.players:
@@ -94,7 +94,12 @@ class Controller:
     
     
     def generate_pairs_remains_round(self):
-        pass
+        sorted_list = sorted(self.current_tournament.players, key=lambda x: (x.score, x.rank))
+        paired_list = [(sorted_list[0], sorted_list[1]),
+                       (sorted_list[2], sorted_list[3])
+                       ]
+        return paired_list
+        
     
     def add_score(self, matchs_pair):
         for pair in matchs_pair:
@@ -119,4 +124,13 @@ class Controller:
 (sorted_list[2], sorted_list[6]),
 (sorted_list[3], sorted_list[7])
 ]
+"""
+"""
+[
+(sorted_list[0], sorted_list[1]),
+(sorted_list[2], sorted_list[3]),
+(sorted_list[4], sorted_list[5]),
+(sorted_list[6], sorted_list[7])
+]
+
 """
