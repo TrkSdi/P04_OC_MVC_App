@@ -48,14 +48,19 @@ class View:
         birth_date = input("Entrez la date de naissance du joueur: ")
         gender = input("Entrez le sexe du joueur: ")
         rank = input("Entrez son classement: ")
+        score = 0
         return {
             "last_name": last_name,
             "first_name": first_name,
             "birth_date": birth_date,
             "gender": gender,
-            "rank": rank
+            "rank": rank,
+            "score": score
         }
         
         
     def input_score(self):
-        pass
+        score = input("Entre le score du joueur: ")
+        return {
+            "score": score
+        }

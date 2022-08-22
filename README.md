@@ -109,43 +109,50 @@ Objets identifiés :
 > Liste de tous les matchs d'un tournoi.
 
 
-aa
-aa
-19/05/1983
-M
-1
-bb
-bb
-19/05/1983
+aa 
+aa 
+19/05/1983 
+M 
+1 
+bb 
+bb 
+19/05/1983 
 M
 2
 cc
 cc
 19/05/1983
-M
-3
-dd
-dd
-19/05/1983
-M
-4
-ee
-ee
-19/05/1983
-M
-5
-ff
-ff
-19/05/1983
-M
-6
-gg
-gg
-19/05/1983
-M
-7
-hh
-hh
-19/05/1983
-M
-8
+M 
+3 
+dd 
+dd 
+19/05/1983 
+M 
+4 
+ee 
+ee 
+19/05/1983 
+M 
+5 
+ff 
+ff 
+19/05/1983 
+M 
+6 
+gg 
+gg 
+19/05/1983 
+M 
+7 
+hh 
+hh 
+19/05/1983 
+M 
+8 
+
+
+A faire :
+
+- S'assurer premier round est opérationnel 
+- Créer méthode score 
+- Penser méthode générer pairs rounds restants 
