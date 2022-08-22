@@ -1,0 +1,124 @@
+{
+
+    "nom" : "",
+    "lieu": "",
+    "date_debut": "",
+    "date_fin": "",
+    "joueurs": [
+        { 
+        "id": "ID1",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID2",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID3",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID4",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID5",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID6",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },
+    { 
+        "id": "ID7",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    },{ 
+        "id": "ID7",
+        "first_name": "",
+        "last_name": "",
+        "birth date": "",
+        "gender": "",
+        "rank": "",
+        "score": ""    
+    }
+    ],
+    "tour": 4,
+    "rounds":[
+        {
+        "name": "Round 1",
+        "date": "",
+        "matchs":[
+        [["id_joueur_A", "point"], ["id_jouer_B", "point"]],
+        [["id_joueur_C", "point"], ["id_jouer_D", "point"]],
+        [["id_joueur_E", "point"], ["id_jouer_F", "point"]],
+        [["id_joueur_I", "point"], ["id_jouer_J", "point"]]
+]
+},
+{
+    "name": "Round 2",
+    "date": "",
+    "matchs":[
+        [["id_joueur_A", "point"], ["id_jouer_B", "point"]],
+        [["id_joueur_C", "point"], ["id_jouer_D", "point"]],
+        [["id_joueur_E", "point"], ["id_jouer_F", "point"]],
+        [["id_joueur_I", "point"], ["id_jouer_J", "point"]]
+]   
+},
+{
+    "name": "Round 3",
+    "date": "",
+    "matchs":[
+        [["id_joueur_A", "point"], ["id_jouer_B", "point"]],
+        [["id_joueur_C", "point"], ["id_jouer_D", "point"]],
+        [["id_joueur_E", "point"], ["id_jouer_F", "point"]],
+        [["id_joueur_I", "point"], ["id_jouer_J", "point"]]
+]
+},
+{
+    "name": "Round 4",
+    "date": "",
+    "matchs":[
+        [["id_joueur_A", "point"], ["id_jouer_B", "point"]],
+        [["id_joueur_C", "point"], ["id_jouer_D", "point"]],
+        [["id_joueur_E", "point"], ["id_jouer_F", "point"]],
+        [["id_joueur_I", "point"], ["id_jouer_J", "point"]]
+]
+}
+]
+
+}
