@@ -58,5 +58,5 @@ class View:
         
         
     def input_score(self, player):
-        score = input(f"Entre le score du joueur {player.last_name}: ")
+        score = input(f"Entrez le score du joueur {player.last_name}: ")
         return score
