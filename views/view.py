@@ -21,7 +21,7 @@ class View:
         return input("Faites votre choix: ")
     
     def input_tournament(self):
-        print("Bienvenue dans le tournoi d'échecs")
+        print("")
         tournament_name = input("Entrez le nom du tournoi: ")
         place = input("Indiquez le lieu: ")
         start_date = input("Indiquez la date de début: ")
@@ -58,5 +58,6 @@ class View:
         
         
     def input_score(self, player):
+        print("")
         score = input(f"Entrez le score du joueur {player.last_name}: ")
         return score

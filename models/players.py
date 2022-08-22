@@ -15,5 +15,5 @@ class Player():
     
 
     def __str__(self):
-        return f"\nNom: {self.last_name} / {self.id}\nClassement: {self.rank}\nScore: {self.score}"
+        return f"\nNom: {self.last_name}\nClassement: {self.rank}\nScore: {self.score}"
     

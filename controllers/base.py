@@ -59,20 +59,25 @@ class Controller:
         if len(self.current_tournament.rounds) == 0:
             # c'est le premier round
             round = Round("Round 1", datetime.now())
+            print("")
+            print(round)
             matchs_pair = self.generate_pairs_round_1()
             for pair in matchs_pair:
-                print(f"{pair[0]} contre {pair[1]}")   
+                print(f"{pair[0]} \nVS {pair[1]}")   
             self.current_tournament.rounds.append(round)
             self.add_score(matchs_pair)
-            
-             
-            """    
-            elif len(self.current_tournament.rounds)  > 0:
-                round = Round(f"Round {len(self.current_tournament.rounds) + 1}", datetime.now())
-                matchs_pair = self.generate_pairs_remains_round()   
-                for pair in matchs_pair:
-                    pass
-            """
+        elif len(self.current_tournament.rounds)  > 0:
+            round = Round(f"Round {len(self.current_tournament.rounds) + 1}", datetime.now())
+            print("")
+            print(round)
+            matchs_pair = self.generate_pairs_remains_round()   
+            for pair in matchs_pair:
+                print(f"{pair[0]} \nVS {pair[1]}")
+            self.current_tournament.rounds.append(round)
+            self.add_score(matchs_pair)
+        # A ajouter : Le score final des joueurs et leur classement
+        # A ajouter : retour au launch program avec message de fin
+        
             
         
     def add_players(self):
@@ -94,7 +99,8 @@ class Controller:
     
     
     def generate_pairs_remains_round(self):
-        sorted_list = sorted(self.current_tournament.players, key=lambda x: (x.score, x.rank))
+        # A vérifier ordre des paires 
+        sorted_list = sorted(self.current_tournament.players, key=lambda x: (x.score, x.rank), reverse=True)
         paired_list = [(sorted_list[0], sorted_list[1]),
                        (sorted_list[2], sorted_list[3])
                        ]
@@ -105,9 +111,10 @@ class Controller:
         for pair in matchs_pair:
             for player in pair:
                 data = self.view.input_score(player)
-                player.score = data
-        for player in self.current_tournament.players:
-            print(player)
+                player.score += int(data)
+        # Vérification des score
+        #for player in self.current_tournament.players:
+        #   print(player)
     
     
     
