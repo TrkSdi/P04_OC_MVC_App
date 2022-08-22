@@ -7,12 +7,12 @@ class Tournament():
         self.place = place
         self.start_date  = start_date
         self.end_date = end_date
-        self.players = []
         self.description = description
-        self.rounds = []
         self.number_round = number_round
+        self.players = []
+        self.rounds = []
 
-    def __repr__(self):
-        return f"(Nom: {self.name}, Nombre de tours: {self.number_round})"
+    def __str__(self):
+        return f"\nNom du tournoi: {self.name}\nNombre de rounds: {self.number_round}\nDescription: {self.description}\n"
 
     
