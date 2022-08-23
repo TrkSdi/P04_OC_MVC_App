@@ -61,3 +61,8 @@ class View:
         print("")
         score = input(f"Entrez le score du joueur {player.last_name}: ")
         return score
+    
+    def input_rank(self, player):
+        print("")
+        rank = input(f"Entrez le classement du joueur {player.last_name}: ")
+        return rank
