@@ -123,16 +123,23 @@ class Controller:
         
     def generate_pairs_round_1(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: x.rank)
-        paired_list = [(sorted_list[0], sorted_list[2]),
-                       (sorted_list[1], sorted_list[3])]
+        paired_list = [
+                    (sorted_list[0], sorted_list[4]),
+                    (sorted_list[1], sorted_list[5]),
+                    (sorted_list[2], sorted_list[6]),
+                    (sorted_list[3], sorted_list[7])
+                    ]
         return paired_list
     
     
     def generate_pairs_remains_round(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: (-x.score, x.rank))
-        paired_list = [(sorted_list[0], sorted_list[1]),
-                       (sorted_list[2], sorted_list[3])
-                       ]
+        paired_list = [
+                    (sorted_list[0], sorted_list[1]),
+                    (sorted_list[2], sorted_list[3]),
+                    (sorted_list[4], sorted_list[5]),
+                    (sorted_list[6], sorted_list[7])
+                    ]
         return paired_list
         
     
