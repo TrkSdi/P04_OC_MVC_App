@@ -25,7 +25,9 @@ class View:
         tournament_name = input("Entrez le nom du tournoi: ")
         place = input("Indiquez le lieu: ")
         start_date = input("Indiquez la date de début: ")
-        end_date = input("Indiquez la date de fin: ")
+        end_date = input("Indiquez la date de fin (appuyez sur entrée si même date): ")
+        if end_date == "":
+            start_date = end_date
         description = input("Entrez une description: ")
         number_round = input("Entre le nombre de tours, sinon 4 par défaut: ")
         if number_round == "":

@@ -1,12 +1,17 @@
-from models.test import end_message
+
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
 from datetime import datetime
+from tinydb import TinyDB
+from pathlib import Path
 import sys
 
 
 class Controller:
+    
+    DB = TinyDB(Path(__file__).resolve().parent / "players.json", indent=4)
+    
     def __init__(self, view):
         self.players = []
         self.tournaments = []
@@ -27,11 +32,10 @@ class Controller:
                 print("Entrez un choix valide")
         
     def tournament_program(self):
-        #while True:
+        while True:
             option = self.view.tournament_menu()
             if option == "1":
                 self.start_tournament()
-                #continue
             elif option  == "2":
                 self.launch_program()
             else:
@@ -82,7 +86,8 @@ class Controller:
                     self.display_score(matchs_pair)
                     self.add_rank(matchs_pair)
                     self.display_rank(matchs_pair)
-                    end_message()
+                    self.save_players()
+                    self.end_message()
                     self.launch_program()
         
         # A ajouter : Le score final des joueurs et leur classement
@@ -99,7 +104,22 @@ class Controller:
         # Vérification des données des joueurs
         #for player in self.current_tournament.players:
         #    print(player)
+    
+    def save_players(self):
+        serialized_players = []
+        for player in self.current_tournament.players:
+            serialized_player = {
+                "last_name": player.last_name,
+                "first_name":player.first_name,
+                "birth_date": player.birth_date,
+                "gender": player.gender,
+                "rank": player.rank,
+                "score": player.score
+            }
+            serialized_players.append(serialized_player)
+        return self.DB.insert_multiple(serialized_players)
         
+
         
     def generate_pairs_round_1(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: x.rank)
@@ -109,7 +129,6 @@ class Controller:
     
     
     def generate_pairs_remains_round(self):
-        # A vérifier ordre des paires 
         sorted_list = sorted(self.current_tournament.players, key=lambda x: (-x.score, x.rank))
         paired_list = [(sorted_list[0], sorted_list[1]),
                        (sorted_list[2], sorted_list[3])
@@ -138,8 +157,10 @@ class Controller:
                 print(f"----- {player}")
         
     
-    
     def display_score(self, matchs_pair):
+        print("")
+        print("SCORE FINAL")
+        print("===========")
         for pair in matchs_pair:
             for player in pair:
                 print(player)
@@ -148,6 +169,9 @@ class Controller:
     def end_message():
         return print("\n=====================================\nFELICITATIONS, LE TOURNOI EST TERMINE\n=====================================")
                 
+                
+    
+    
 
     
     

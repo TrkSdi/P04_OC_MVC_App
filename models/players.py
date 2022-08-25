@@ -2,6 +2,8 @@ import uuid
 
 class Player():
     
+    
+    
     def __init__(self, first_name, last_name, birth_date, gender, rank):
         self.first_name = first_name
         self.last_name = last_name
@@ -11,9 +13,5 @@ class Player():
         self.score = 0
         self.id = uuid.uuid4()
         
-
-    
-
     def __str__(self):
         return f"\nNom: {self.last_name}\nClassement: {self.rank}\nScore: {self.score}"
-    
