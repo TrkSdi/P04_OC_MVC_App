@@ -181,10 +181,15 @@ class Controller:
         print("")
         print("SCORE FINAL")
         print("===========")
+        liste = []
         for pair in list_pairs:
             for player in pair:
-                print(player)
-    
+                liste.append(player)
+        sorted_list = sorted(liste, key=lambda x: (-x.score, x.rank))
+        for player in sorted_list:
+            print(player)
+            
+            
     @staticmethod          
     def end_message():
         return print("\n=====================================\nFELICITATIONS, LE TOURNOI EST TERMINE\n=====================================")
