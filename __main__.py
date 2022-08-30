@@ -4,5 +4,5 @@ from views.view import View
 view = View()
 controller = Controller(view)
 
-controller.run()
+controller.launch_program()
 
