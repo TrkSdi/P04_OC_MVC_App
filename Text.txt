@@ -1,0 +1,75 @@
+Round 1
+-------
+already_match = [
+                (id1, id5), 
+                (id2, id6),
+                (id3, id7),
+                (id4, id8),
+                ]
+
+
+Tous égalité
+
+Liste classé par score(score) puis par classement(rank)
+
+liste_classé = [j1, j2, j3, j4, j5, j6, j7, j8]
+
+
+match = [
+        (id1, id2), 
+        (id3, id4),
+        (id5, id6),
+        (id7, id8),
+        ]
+
+already_match = [
+                (id1, id5), 
+                (id2, id6),
+                (id3, id7),
+                (id4, id8),
+                (id1, id2), 
+                (id3, id4),
+                (id5, id6),
+                (id7, id8),
+                ]
+
+Tous égalité
+
+Liste classé par score(score) puis par classement(rank)
+
+liste_classé = [j1, j2, j3, j4, j5, j6, j7, j8]
+
+
+i = 0
+j = i + 1
+
+Si j est supérieur a l'index max
+    continue
+Sinon match = (id(i), id(j))
+    Si (id(i), id(2)) ou (id2, id1) existe dans already_match
+        alors match = (id(i), id(j+1)) or (id(j), id(i+1))
+
+
+match = [
+        (id1, id3), 
+        (id2, id4),
+        (id5, id7),
+        (id6, id8),
+        ]
+
+already_match = [
+                (id1, id5), 
+                (id2, id6),
+                (id3, id7),
+                (id4, id8),
+                (id1, id2), 
+                (id3, id4),
+                (id5, id6),
+                (id7, id8),
+                (id1, id3), 
+                (id2, id4),
+                (id5, id7),
+                (id6, id8),
+                ]
+
+ 

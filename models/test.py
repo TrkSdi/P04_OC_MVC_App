@@ -47,12 +47,30 @@ def test():
     
 test()
 """
-liste_vide = []
-paired_list = [
-                   ("sorted_list[0]", "sorted_list[2]"),
-                   ("sorted_list[1]", "sorted_list[3]")]
-
-for pair in paired_list:
-    liste_vide.append(pair)
-    
-print(liste_vide)
+'''
+def generate_pairs_remains_round(self):
+        sorted_list = sorted(self.current_tournament.players, key=lambda x: (-x.score, x.rank))
+        paired_list = []
+        already_matched = []
+        
+        for i in range(len(sorted_list)):
+            if sorted_list[i].id in already_matched:
+                continue
+            else: 
+                id1 = sorted_list[i].id
+                player1 = sorted_list[i]
+                already_matched.append(id1)
+                j = i + 1
+                for j in range(len(sorted_list)):
+                    if sorted_list[j].id in already_matched or (id1, sorted_list[j].id) in self.round.matchs or (sorted_list[j].id, id1) in self.round.matchs:
+                        continue
+                    else:
+                        id2 = sorted_list[j].id
+                        player2 = sorted_list[j]
+                        already_matched.append(id2)
+                        match = (player1, player2)
+                        paired_list.append(match)
+                        break
+        
+        return paired_list
+'''

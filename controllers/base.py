@@ -64,35 +64,37 @@ class Controller:
             
         
     def start_round(self):
-        list_pairs = []
+        
+        paired_list = []
         if len(self.current_tournament.rounds) == 0:
             # First Round 
             self.round = Round("Round 1", datetime.now())
             print("")
             print(self.round)
-            list_pairs = self.generate_pairs_round_1()
+            paired_list = self.generate_pairs_round_1()
             
         elif len(self.current_tournament.rounds) < self.current_tournament.number_round:
             self.round = Round(f"Round {len(self.current_tournament.rounds) + 1}", datetime.now())
             print("")
             print(self.round)
             # Pour test / à modifier
-            list_pairs = self.generate_pairs_round_1()
-        
+            paired_list = self.generate_pairs_remains_round()
+        else:
+            self.display_score(paired_list)
             
         
         match = ()
-        for pair in list_pairs:
-            match = (pair[0], pair[1])
-            #print(f"Match {len(match)}") à revoir 
-            print(f"{pair[0]} VS {pair[1]}")
+        for pair in paired_list:
+            match = (pair[0][0], pair[1][0])
+            print(f"{pair[0][0]} \nVS \n{pair[1][0]}")
             self.add_score(match)
+            self.current_tournament.previous_match.append(match)
         
         
         
-        self.round.matchs.append(self.round.matchs)
+        self.round.matchs.append(match)
         self.current_tournament.rounds.append(self.round.matchs)
-        self.display_score(list_pairs)
+        
         
         '''
         # remains rounds
@@ -115,22 +117,13 @@ class Controller:
             self.current_tournament.rounds.append(self.matchs)
         '''      
             
-            
-            
-                    
-        
-        # A ajouter : Le score final des joueurs et leur classement
-        # A ajouter : retour au launch program avec message de fin
-        
-            
-        
     def add_players(self):
-        MAX_NUM_PLAYERS = 4
+        MAX_NUM_PLAYERS = 8
         while len(self.current_tournament.players) < MAX_NUM_PLAYERS:
             data = self.view.input_player()
             player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"])
             self.current_tournament.players.append(player)
-        # Vérification des données des joueurs
+        #Vérification des données des joueurs
         #for player in self.current_tournament.players:
         #    print(player)
     
@@ -153,25 +146,46 @@ class Controller:
     def generate_pairs_round_1(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: x.rank)
         paired_list = [
-                    (sorted_list[0], sorted_list[2]),
-                    (sorted_list[1], sorted_list[3])
+                        ([sorted_list[0], sorted_list[0].id], [sorted_list[4], sorted_list[4].id]),
+                        ([sorted_list[1], sorted_list[1].id], [sorted_list[5], sorted_list[5].id]),
+                        ([sorted_list[2], sorted_list[2].id], [sorted_list[6], sorted_list[6].id]),
+                        ([sorted_list[3], sorted_list[3].id], [sorted_list[7], sorted_list[7].id])
                     ]
         return paired_list
     
     
     def generate_pairs_remains_round(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: (-x.score, x.rank))
-        paired_list = [
-                    (sorted_list[0], sorted_list[1]),
-                    (sorted_list[2], sorted_list[3]),
-                    ]
-        return paired_list
+        paired_list = []
+        already_selected = []
         
-    
+        
+        
+        for i in range(len(sorted_list)):
+            if [sorted_list[i], sorted_list[i].id] in already_selected:
+                continue
+            else:
+                player_1 = [sorted_list[i], sorted_list[i].id]
+                already_selected.append(player_1)
+                j = i + 1
+                for j in range(len(sorted_list)):
+                    if [sorted_list[j], sorted_list[j].id] in already_selected or (player_1, [sorted_list[j], sorted_list[j].id]) in self.current_tournament.previous_match or ([sorted_list[j], sorted_list[j].id], player_1) in self.current_tournament.previous_match:
+                        continue
+                    else:
+                        player_2 = [sorted_list[j], sorted_list[j].id]
+                        already_selected.append(player_2)
+                        pair = (player_1, player_2)
+                        paired_list.append(pair)
+                        break
+        
+        
+        return paired_list
+            
+  
     def add_score(self, match):
-            for player in match:
-                data = self.view.input_score(player)
-                player.score += float(data)
+        for player in match:
+            data = self.view.input_score(player)
+            player.score += float(data)
         # Vérification des scores
         #for player in self.current_tournament.players:
         #   print(player)
