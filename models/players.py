@@ -13,6 +13,7 @@ class Player():
         self.score = 0.0
         self.id = uuid.uuid4()
         
+        
     def __str__(self):
         return f"\nNom: {self.last_name}\nClassement: {self.rank}\nScore: {self.score}"
     

@@ -1,4 +1,9 @@
 
+from curses.ascii import isdigit
+
+
+
+
 
 class View:
     
@@ -44,12 +49,31 @@ class View:
         }
     
     
-    def input_player(self):
-        last_name = input("Entrez le prénom du joueur: ")
-        first_name = input("Entrez le nom du joueur: ")
+    def input_player(self, current_tournament):
+        
+        last_name = input("Entrez le nom du joueur: ")
+        while last_name == "":
+            print("Le nom du joueur est obligatoire")
+            last_name = input("Entrez le nom du joueur: ")
+        first_name = input("Entrez le prénom du joueur: ")
         birth_date = input("Entrez la date de naissance du joueur: ")
         gender = input("Entrez le sexe du joueur: ")
-        rank = input("Entrez son classement: ")
+        while True:  
+            rank = input("Entrez son classement: ")
+            if not rank.isdigit():
+                print("Veuillez entrez un choix valide")
+                continue
+            elif rank == "":
+                print("Veuillez entrez un choix valide")
+                continue
+            elif rank in current_tournament.rank_list:
+                print("Classement déjà assigné")
+                continue   
+            else:
+                current_tournament.rank_list.append(rank)
+                break
+       
+        
         return {
             "last_name": last_name,
             "first_name": first_name,
