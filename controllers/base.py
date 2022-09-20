@@ -10,7 +10,7 @@ import sys
 
 class Controller:
     
-    DB = TinyDB(Path(__file__).resolve().parent / "players.json", indent=4)
+    db_players = TinyDB(Path(__file__).resolve().parent / "Joueurs.json", indent=4)
     db_tournament = TinyDB(Path(__file__).resolve().parent / "Tournoi.json", indent=4, default=str)
     
     
@@ -60,14 +60,12 @@ class Controller:
         self.current_tournament = Tournament(data["tournament_name"], data["place"], data["start_date"], data["end_date"], data["description"], data["number_round"]) 
         print(self.current_tournament)
         self.add_players()
-        #self.save_players()
         while self.current_tournament.number_round != len(self.current_tournament.rounds):
             self.start_round()
+        self.save_players()
+        self.save_tournament()    
         self.display__final_score()
         self.end_message()
-        self.db_tournament.truncate()
-        self.db_tournament.all()
-        self.save_tournament()
         self.launch_program()
             
         
@@ -75,33 +73,39 @@ class Controller:
         
         paired_list = []
         if len(self.current_tournament.rounds) == 0:
-            # First Round 
-            self.round = Round("Round 1", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-            print("----------------------------------")
-            print(self.round)
-            print("----------------------------------")
+            # First round 
+            self.current_round = Round("Round 1", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            print("-----------------------------")
+            print(self.current_round)
+            print("-----------------------------")
             paired_list = self.generate_pairs_round_1()
             
+            
         elif len(self.current_tournament.rounds) < self.current_tournament.number_round:
-            self.round = Round(f"Round {len(self.current_tournament.rounds) + 1}", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-            print("----------------------------------")
-            print(self.round)
-            print("----------------------------------")
-            # Pour test / à modifier
+            # Remains rounds
+            self.current_round = Round(f"Round {len(self.current_tournament.rounds) + 1}", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            print("-----------------------------")
+            print(self.current_round)
+            print("-----------------------------")
             paired_list = self.generate_pairs_remains_round()
         
          
         match = ()
-        for pair in paired_list:
-            match = (pair[0], pair[1])
-            print(f"\nJoueur: {pair[0].last_name}\nClassement: {pair[0].rank}\nScore: {pair[0].score}\nVS\nJoueur: {pair[1].last_name}\nClassement: {pair[1].rank}\nScore: {pair[1].score}\n")
-            self.add_score(match)
-            self.current_tournament.previous_match.append(match)
-            
-        self.round.matchs.append(self.current_tournament.previous_match)
-        self.current_tournament.rounds.append(self.round)
+        already_match = ()
+        match_score = 0.0
         
+        for pair in paired_list:
+            match = ([pair[0], match_score], [pair[1], match_score]) # pair[] + score / score a stocker dans match 
+            print(f"\nJoueur: {pair[0].last_name}\nVS\nJoueur: {pair[1].last_name}")
+            self.add_score(match)
+            already_match = (pair[0], pair[1])
+            self.current_tournament.previous_match.append(already_match)
+            self.current_round.matchs.append(match)
             
+        
+        self.current_tournament.rounds.append(self.current_round)
+        
+
     def add_players(self):
         MAX_NUM_PLAYERS = 8
         while len(self.current_tournament.players) < MAX_NUM_PLAYERS:
@@ -111,14 +115,7 @@ class Controller:
 
     
     def save_tournament(self):
-        
         tournament_table = self.db_tournament.table("Tournament")
-        players_table = self.db_tournament.table("Players")
-        rounds_table = self.db_tournament.table("Rounds")
-        
-        
-        players = []
-        rounds = []
         
         serialized_tournament = {
             "name": self.current_tournament.name,
@@ -126,34 +123,24 @@ class Controller:
             "start_date": self.current_tournament.start_date,
             "end_date": self.current_tournament.end_date,
             "description": self.current_tournament.description,
-            "number_round": self.current_tournament.number_round  
+            "number_round": self.current_tournament.number_round,
+            "rounds" : []  
         }
         
-        tournament_table.insert(serialized_tournament)
-        
-        for player in self.current_tournament.players:
-            serialized_player = {
-                "last_name": player.last_name,
-                "first_name":player.first_name,
-                "birth_date": player.birth_date,
-                "gender": player.gender,
-                "rank": player.rank,
-                "score": player.score
-            }
-    
-            players_table.insert(serialized_player)
-        
         for round in self.current_tournament.rounds:
-            for match in self.current_tournament.rounds:
-                serialized_round = {
-                    "name": round.name, 
-                    "start_date": round.start_date,
-                    "end_date": round.end_date,
-                    "match": match  
-                }
-                rounds.append(serialized_round)
-                rounds_table.insert_multiple(rounds)
+            serialized_round = {
+                            "name": round.name, 
+                            "start_date": round.start_date,
+                            "end_date": round.end_date,
+                            "matchs": []
+                                }
+            
+            for match in round.matchs:
+                serialized_round["matchs"].append(([match[0][0].id, match[0][1]],[match[1][0].id, match[1][1]]))
         
+            serialized_tournament["rounds"].append(serialized_round)
+        
+        tournament_table.insert(serialized_tournament)
         
     def save_players(self):
         serialized_players = []
@@ -164,10 +151,11 @@ class Controller:
                 "birth_date": player.birth_date,
                 "gender": player.gender,
                 "rank": player.rank,
-                "score": player.score
+                "score": player.score,
+                "id" : str(player.id)
             }
             serialized_players.append(serialized_player)
-        return self.DB.insert_multiple(serialized_players)
+        self.db_players.insert_multiple(serialized_players)
         
         
     def generate_pairs_round_1(self):
@@ -181,43 +169,38 @@ class Controller:
                     ]
         return paired_list
     
-    
     def generate_pairs_remains_round(self):
-        
         sorted_list = sorted(self.current_tournament.players, key=lambda x: (-x.score, x.rank))
         paired_list = []
         already_selected = []
         
+        for players in sorted_list:
+            print(players)
         
         for i in range(len(sorted_list)):
-            if sorted_list[i] in already_selected:
+            if sorted_list[i].id in already_selected:
                 continue
             else:
                 player_1 = sorted_list[i]
-                already_selected.append(player_1)
+                already_selected.append(player_1.id)
                 j = i + 1
                 for j in range(len(sorted_list)):
-                    if sorted_list[j] in already_selected or (player_1, sorted_list[j]) in self.current_tournament.previous_match or (sorted_list[j], player_1) in self.current_tournament.previous_match:
+                    if sorted_list[j].id in already_selected or (player_1, sorted_list[j]) in self.current_tournament.previous_match or (sorted_list[j], player_1) in self.current_tournament.previous_match:
                         continue
                     else:
                         player_2 = sorted_list[j]
-                        already_selected.append(player_2)
+                        already_selected.append(player_2.id)
                         pair = (player_1, player_2)
                         paired_list.append(pair)
                         break
             
-        
         return paired_list
             
-  
     def add_score(self, match):
-        for player in match:
-            data = self.view.input_score(player)
-            player.score += float(data)
-        # Vérification des scores
-        #for player in self.current_tournament.players:
-        #   print(player)
-        
+            for element in match:
+                data = self.view.input_score(element[0])
+                element[0].score += float(data) 
+                element[1] += float(data)
     
     def display__final_score(self):
         print("")
@@ -235,7 +218,3 @@ class Controller:
     def end_message():
         return print("\n=====================================\nFELICITATIONS, LE TOURNOI EST TERMINE\n=====================================")
                 
-                
-
-        
-        

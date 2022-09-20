@@ -1,6 +1,7 @@
 from textwrap import indent
 from tinydb import TinyDB
 from pathlib import Path
+from models.round import Round
 
 class Tournament():
  

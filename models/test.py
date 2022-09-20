@@ -1,17 +1,13 @@
-rank_list = []
-
-for i in range(8):
+import json
+ 
+# opening the JSON file
+data = open('Joueurs.json',)
+ 
+print("Datatype before deserialization : "
+      + str(type(data)))
     
-    while i < 8 :
-        rank = input("Entrez son classement: ")
-        if not rank.isdigit():
-            print("Veuillez entrez un choix valide")
-        elif rank == "":
-            print("Veuillez entrez un choix valide")
-        elif rank in str(rank_list):
-            print("Classement déjà assigné")   
-        else:
-            i += 1
-            rank_list.append(rank)
-            print(rank_list)
-            break
+# deserializing the data
+data = json.load(data)
+ 
+print("Datatype after deserialization : "
+      + str(type(data)))

@@ -1,5 +1,6 @@
 
 from curses.ascii import isdigit
+from models.players import Player
 
 
 
@@ -85,10 +86,33 @@ class View:
         
     def input_score(self, player):
         print("")
-        score = input(f"Entrez le score du joueur {player.last_name}: ")
+        valid_score = ["1", "0.5", "0"]
+        while True:
+            already_score = []
+            score = input(f"Entrez le score du joueur {player.last_name}: ")
+            if score == "":
+                print("L'ajout du score est nécessaire")
+            elif not score.replace('.','',1).isdigit():
+                print("Le format saisi n'est pas valide")
+            elif not score in valid_score:
+                print("Le score n'est pas valide") 
+                if score == "0.5":
+                    continue
+                elif score == "1" or score == "0":
+                    already_score.append(score)
+            elif score in already_score:
+                print("Le score est déjà utilisé")
+            else:
+                break
         return score
     
     def input_rank(self, player):
         print("")
         rank = input(f"Entrez le classement du joueur {player.last_name}: ")
         return rank
+
+    def input_report(self):
+        print("")
+        print("1 - Liste des joueurs")
+        print("2 - Liste des tournois")
+        
