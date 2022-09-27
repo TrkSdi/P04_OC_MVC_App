@@ -113,6 +113,20 @@ class View:
 
     def input_report(self):
         print("")
-        print("1 - Liste des joueurs")
-        print("2 - Liste des tournois")
+        print("1 - Liste de tous les joueurs (alphanumérique)")
+        print("2 - Liste de tous les joueurs (classement)")
+        print("3 - Liste de tournois")
+        print("4 - Liste des joueurs par tournoi (alphanumérique)")
+        print("5 - Liste des joueurs par tournoi (classement)")
+        print("6 - Liste des tours par tournoi")
+        print("7 - Liste des matchs par tournoi")
+        print("0 - Menu principal")
+        print("")
         
+        return input("Faites votre choix: ")
+    
+    def input_choice(self):
+        print("")
+        
+        return input("Faites votre choix: ")
+    

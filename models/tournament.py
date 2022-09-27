@@ -16,6 +16,7 @@ class Tournament():
         self.rounds = []
         self.previous_match = []
         self.rank_list = []
+        self.paired_list = []
 
     def __str__(self):
         return f"\nNom du tournoi: {self.name}\nNombre de rounds: {self.number_round}\nDescription: {self.description}\n"
