@@ -2,6 +2,7 @@ from textwrap import indent
 from tinydb import TinyDB
 from pathlib import Path
 from models.round import Round
+import uuid
 
 class Tournament():
  
@@ -17,6 +18,7 @@ class Tournament():
         self.previous_match = []
         self.rank_list = []
         self.paired_list = []
+        self.id = uuid.uuid4()
 
     def __str__(self):
         return f"\nNom du tournoi: {self.name}\nNombre de rounds: {self.number_round}\nDescription: {self.description}\n"

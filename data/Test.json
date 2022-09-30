@@ -1,0 +1,54 @@
+{
+  "Tournament": {
+    "1": {
+      "name": "Le Grand tournoi",
+      "place": "Paris",
+      "start_date": "11/02/2023",
+      "end_date": "11/02/2023",
+      "description": "International",
+      "number_round": 4,
+      "players": [
+        {
+          "id": "d1f834f4-7ff5-45e3-88d0-f57b926123d5"
+        },
+        {
+          "id": "7232d387-119e-441c-a4c3-c969d6bbbcd0"
+        },
+        {
+          "id": "7749db00-6dd7-490b-a750-0cab19348e59"
+        },
+        {
+          "id": "15a0f931-36af-4405-a4ab-4626f1261bf4"
+        },
+        {
+          "id": "b9d9b785-7210-43f0-b279-3e3aa9377627"
+        },
+        {
+          "id": "da838746-6b28-4f91-b962-8567d95d192f"
+        },
+        {
+          "id": "ad39af21-5209-4aa5-87c9-08ed03a7b7ab"
+        },
+        {
+          "id": "72d854c3-ee88-479b-8d13-bba4809f0d65"
+        }
+      ],
+      "rounds": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ]
+      ]
+    }
+  }
+}

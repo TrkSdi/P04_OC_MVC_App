@@ -13,7 +13,7 @@ class View:
         print("Bienvenue au tournoi d'échecs")
         print("")
         print("1 - Tournois")
-        print("2 - Joueurs")
+        print("2 - Modifier classement")
         print("3 - Rapports")
         print("0 - Quitter")
         print("")
@@ -22,7 +22,8 @@ class View:
     def tournament_menu(self):
         print("")
         print("1 - Commencer un nouveau tournoi")
-        print("2 - Menu principal")
+        print("2 - Continuer un tournoi")
+        print("3 - Menu principal")
         print("")
         return input("Faites votre choix: ")
     
@@ -130,3 +131,12 @@ class View:
         
         return input("Faites votre choix: ")
     
+    def select_player(self):
+        print("")
+        
+        return input("Séléctionnez un joueur: ")
+    
+    def change_rank(self):
+        print("")
+        
+        return input("Entrez le nouveau classement: ")
