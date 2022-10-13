@@ -8,9 +8,9 @@ class Player():
         self.birth_date = birth_date
         self.gender = gender
         self.rank = rank
-        self.score = 0.0 # score final / Total score
+        self.score = 0.0
         self.id = uuid.uuid4()
         
     def __str__(self):
-        return f"\nNom: {self.last_name}\nClassement: {self.rank}\nScore: {self.score}"
+        return str(self.id)
     

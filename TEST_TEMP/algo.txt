@@ -13,7 +13,7 @@
 
 1
 1
-Le Petit tournoi
+Le tournoi de Paris
 Paris
 11/02/2023
 11/02/2023
@@ -155,3 +155,13 @@ M
 0.5
 0.5
 0.5
+
+
+1
+1
+Le tournoi de Monaco
+Monaco
+05/06/2024
+05/06/2024
+National
+4

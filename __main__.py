@@ -5,4 +5,3 @@ view = View()
 controller = Controller(view)
 
 controller.launch_program()
-

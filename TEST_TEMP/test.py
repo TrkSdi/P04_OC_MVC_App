@@ -1,8 +1,11 @@
 
-x = 5
 
-if x > 4:
-    x = 10
-    
-    
-print(x)
+from uuid import uuid4
+
+import uuid
+
+id_to_change = "53da5175-849a-4eef-9641-683599378325"
+
+
+
+print(uuid.UUID(id_to_change).hex)
