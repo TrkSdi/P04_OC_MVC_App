@@ -1,16 +1,12 @@
 
-from curses.ascii import isdigit
-from models.players import Player
-
-
-
-
 
 class View:
-    
+
     def main_menu(self):
         print("")
+        print("-----------------------------")
         print("Bienvenue au tournoi d'échecs")
+        print("-----------------------------")
         print("")
         print("1 - Tournois")
         print("2 - Modifier classement")
@@ -18,15 +14,17 @@ class View:
         print("0 - Quitter")
         print("")
         return input("Faites votre choix: ")
-    
+
     def tournament_menu(self):
         print("")
+        print("--------------------------------")
         print("1 - Commencer un nouveau tournoi")
         print("2 - Continuer un tournoi")
-        print("3 - Menu principal")
+        print("0 - Menu principal")
+        print("--------------------------------")
         print("")
         return input("Faites votre choix: ")
-    
+
     def input_tournament(self):
         print("")
         tournament_name = input("Entrez le nom du tournoi: ")
@@ -34,7 +32,7 @@ class View:
         start_date = input("Indiquez la date de début: ")
         end_date = input("Indiquez la date de fin (appuyez sur entrée si même date): ")
         if end_date == "":
-            start_date = end_date
+            end_date = start_date
         description = input("Entrez une description: ")
         number_round = input("Entre le nombre de tours, sinon 4 par défaut: ")
         if number_round == "":
@@ -47,12 +45,10 @@ class View:
             "start_date": start_date,
             "end_date": end_date,
             "description": description,
-            "number_round": number_round       
+            "number_round": number_round
         }
-    
-    
+
     def input_player(self, current_tournament):
-        
         last_name = input("Entrez le nom du joueur: ")
         while last_name == "":
             print("Le nom du joueur est obligatoire")
@@ -60,7 +56,7 @@ class View:
         first_name = input("Entrez le prénom du joueur: ")
         birth_date = input("Entrez la date de naissance du joueur: ")
         gender = input("Entrez le sexe du joueur: ")
-        while True:  
+        while True:
             rank = input("Entrez son classement: ")
             if not rank.isdigit():
                 print("Veuillez entrez un choix valide")
@@ -70,12 +66,11 @@ class View:
                 continue
             elif rank in current_tournament.rank_list:
                 print("Classement déjà assigné")
-                continue   
+                continue
             else:
                 current_tournament.rank_list.append(rank)
                 break
-       
-        
+
         return {
             "last_name": last_name,
             "first_name": first_name,
@@ -83,30 +78,22 @@ class View:
             "gender": gender,
             "rank": rank
         }
-        
-        
+
     def input_score(self, player):
         print("")
         valid_score = ["1", "0.5", "0"]
         while True:
-            already_score = []
             score = input(f"Entrez le score du joueur {player.last_name}: ")
             if score == "":
                 print("L'ajout du score est nécessaire")
-            elif not score.replace('.','',1).isdigit():
+            elif not score.replace('.', '', 1).isdigit():
                 print("Le format saisi n'est pas valide")
-            elif not score in valid_score:
-                print("Le score n'est pas valide") 
-                if score == "0.5":
-                    continue
-                elif score == "1" or score == "0":
-                    already_score.append(score)
-            elif score in already_score:
-                print("Le score est déjà utilisé")
+            elif score not in valid_score:
+                print("Le score n'est pas valide")
             else:
                 break
         return score
-    
+
     def input_rank(self, player):
         print("")
         rank = input(f"Entrez le classement du joueur {player.last_name}: ")
@@ -114,6 +101,7 @@ class View:
 
     def input_report(self):
         print("")
+        print("--------------------------------------------------")
         print("1 - Liste de tous les joueurs (alphanumérique)")
         print("2 - Liste de tous les joueurs (classement)")
         print("3 - Liste de tournois")
@@ -122,21 +110,22 @@ class View:
         print("6 - Liste des tours par tournoi")
         print("7 - Liste des matchs par tournoi")
         print("0 - Menu principal")
+        print("--------------------------------------------------")
         print("")
-        
+
         return input("Faites votre choix: ")
-    
+
     def input_choice(self):
         print("")
-        
+
         return input("Faites votre choix: ")
-    
+
     def select_player(self):
         print("")
-        
+
         return input("Séléctionnez un joueur: ")
-    
+
     def change_rank(self):
         print("")
-        
+
         return input("Entrez le nouveau classement: ")

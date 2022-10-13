@@ -3,7 +3,6 @@ import json
 
 
 def players_per_tournament_rank(i):
-    
     file = Path("/Users/dev/Desktop/En cours/Projet_04/Chess_Project_V2/data/Joueurs.json")
     data_players = open(file)
     isempty = file.stat().st_size == 0
@@ -43,12 +42,12 @@ def players_per_tournament_rank(i):
                 for sub in list_players:
                     if player["id"] in sub["id"]:
                         new_player = {'last_name': sub["last_name"], 'first_name': sub["first_name"], 'birth_date': sub["birth_date"], 'gender': sub["gender"], 'rank': sub["rank"]}
-                        new_list.append(new_player) 
-            sorted_list_alpha = sorted(new_list, key=lambda d: int(d['rank']))  
+                        new_list.append(new_player)
+            sorted_list_alpha = sorted(new_list, key=lambda d: int(d['rank']))
             for player in sorted_list_alpha:
-                print("Nom:               " , player["last_name"])
-                print("Prénom:            " , player["first_name"])
-                print("Date de naissance: " , player["birth_date"])
-                print("Genre:             " , player["gender"])
-                print("Classement:        " , player["rank"])
-                print("-" * 30)   
+                print("Nom:               ", player["last_name"])
+                print("Prénom:            ", player["first_name"])
+                print("Date de naissance: ", player["birth_date"])
+                print("Genre:             ", player["gender"])
+                print("Classement:        ", player["rank"])
+                print("-" * 30)
