@@ -1,11 +1,22 @@
 
 
 from uuid import uuid4
+from tinydb import TinyDB
 
-import uuid
+db_tournament = TinyDB("data/Tournoi.json", indent=4, default=str)
 
-id_to_change = "53da5175-849a-4eef-9641-683599378325"
+tournament_table = db_tournament.table("Tournament")
+
+print(tournament_table)
+
+liste = ["Tarik", "Mamadou", "George"]
+
+for sub in tournament_table:
+    for players in liste:
+        sub["players"].append(players)
+    
+    
+    tournament_table.update({"players": sub["players"]})
+    
 
 
-
-print(uuid.UUID(id_to_change).hex)

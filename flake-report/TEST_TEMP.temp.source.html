@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>TEST_TEMP/temp.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="TEST_TEMP.temp.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               TEST_TEMP/temp.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E265
+                     </span>
+                     Block comment should start with '# '</li>
+               
+               </ul><tt><i>1</i> <span class="c1">#def generate_pairs_remains_round(self):</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (102 > 79 characters)</li>
+               
+               </ul><tt><i>2</i> <span class="c1">#    sorted_list = sorted(self.current_tournament.players, key=lambda x: (int(-x.score), int(x.rank)))</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> <span class="c1">#    paired_list = []</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> <span class="c1">#    already_selected = []</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="c1">#</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="c1">#    for i in range(len(sorted_list)):</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> <span class="c1">#        if sorted_list[i].id in already_selected:</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="c1">#            continue</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i> <span class="c1">#        else:</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i> <span class="c1">#            player_1 = sorted_list[i]</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> <span class="c1">#            already_selected.append(player_1.id)</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i> <span class="c1">#            j = i + 1</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> <span class="c1">#            for j in range(len(sorted_list)):</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (214 > 79 characters)</li>
+               
+               </ul><tt><i>14</i> <span class="c1">#                if sorted_list[j].id in already_selected or (player_1.id, sorted_list[j].id) in self.current_tournament.previous_match or (sorted_list[j].id, player_1.id) in self.current_tournament.previous_match:</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i> <span class="c1">#                    continue</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> <span class="c1">#                else:</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i> <span class="c1">#                    player_2 = sorted_list[j]</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i> <span class="c1">#                    already_selected.append(player_2.id)</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i> <span class="c1">#                pair = (player_1, player_2)</span></tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i> <span class="c1">#                paired_list.append(pair)</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i> <span class="c1">#                break</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>22</i> <span class="c1">#            </span></tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i> <span class="c1">#    return paired_list</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>24</i> <span class="c1">#    </span></tt>
+            </div>
+            <div id="l25"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>25</i> <span class="c1">#    </span></tt>
+            </div>
+            <div id="l26"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>26</i> <span class="c1">#    </span></tt>
+            </div>
+            <div id="l27"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E265
+                     </span>
+                     Block comment should start with '# '</li>
+               
+               </ul><tt><i>27</i> <span class="c1">#def start_round(self):</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i> <span class="c1">#        match = ()</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i> <span class="c1">#        already_match = ()</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i> <span class="c1">#        match_score = 0.0</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>31</i> <span class="c1">#        </span></tt>
+            </div>
+            <div id="l32"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>32</i> <span class="c1">#        </span></tt>
+            </div>
+            <div id="l33"
+               class="code sev- "><tt><i>33</i> <span class="c1">#        if len(self.current_tournament.rounds) == 0:</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>34</i> <span class="c1">#            # First round </span></tt>
+            </div>
+            <div id="l35"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (96 > 79 characters)</li>
+               
+               </ul><tt><i>35</i> <span class="c1">#            self.current_round = Round(&quot;Round 1&quot;, datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;))</span></tt>
+            </div>
+            <div id="l36"
+               class="code sev- "><tt><i>36</i> <span class="c1">#            print(&quot;-----------------------------&quot;)</span></tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i> <span class="c1">#            print(self.current_round)</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev- "><tt><i>38</i> <span class="c1">#            print(&quot;-----------------------------&quot;)</span></tt>
+            </div>
+            <div id="l39"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>39</i> <span class="c1">#            self.current_tournament.paired_list = self.generate_pairs_round_1()</span></tt>
+            </div>
+            <div id="l40"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>40</i> <span class="c1">#             </span></tt>
+            </div>
+            <div id="l41"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (90 > 79 characters)</li>
+               
+               </ul><tt><i>41</i> <span class="c1">#        elif len(self.current_tournament.rounds) &lt;= self.current_tournament.number_round:</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i> <span class="c1">#            # Remains rounds</span></tt>
+            </div>
+            <div id="l43"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (137 > 79 characters)</li>
+               
+               </ul><tt><i>43</i> <span class="c1">#            self.current_round = Round(f&quot;Round {len(self.current_tournament.rounds) + 1}&quot;, datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;))</span></tt>
+            </div>
+            <div id="l44"
+               class="code sev- "><tt><i>44</i> <span class="c1">#            print(&quot;-----------------------------&quot;)</span></tt>
+            </div>
+            <div id="l45"
+               class="code sev- "><tt><i>45</i> <span class="c1">#            print(self.current_round)</span></tt>
+            </div>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i> <span class="c1">#            print(&quot;-----------------------------&quot;)</span></tt>
+            </div>
+            <div id="l47"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (86 > 79 characters)</li>
+               
+               </ul><tt><i>47</i> <span class="c1">#            self.current_tournament.paired_list = self.generate_pairs_remains_round()</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i> <span class="c1">#            print(self.current_tournament.paired_list)</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>49</i> <span class="c1">#            </span></tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i> <span class="c1">#        for pair in self.current_tournament.paired_list:</span></tt>
+            </div>
+            <div id="l51"
+               class="code sev- "><tt><i>51</i> <span class="c1">#            match = ([pair[0], match_score], [pair[1], match_score])</span></tt>
+            </div>
+            <div id="l52"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>52</i> <span class="c1">#            print(f&quot;\nJoueur: {pair[0].last_name}\nVS\nJoueur: {pair[1].last_name}&quot;)</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i> <span class="c1">#            self.add_score(match)</span></tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i> <span class="c1">#            already_match = (pair[0].id, pair[1].id)</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i> <span class="c1">#            self.current_tournament.previous_match.append(already_match)</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev- "><tt><i>56</i> <span class="c1">#            self.current_round.matchs.append(match)</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>57</i> <span class="c1">#            </span></tt>
+            </div>
+            <div id="l58"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W292
+                     </span>
+                     No newline at end of file</li>
+               
+               </ul><tt><i>58</i> <span class="c1">#        self.current_tournament.rounds.append(self.current_round)</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

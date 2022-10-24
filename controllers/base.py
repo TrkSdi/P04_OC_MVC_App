@@ -1,5 +1,5 @@
 
-from models.constant import OP_0, OP_1, OP_2, OP_3, OP_4, OP_5, OP_6, OP_7
+from models.constant import *
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
@@ -29,13 +29,13 @@ class Controller:
     def launch_program(self):
         while True:
             option = self.view.main_menu()
-            if option == OP_1:
+            if option == OP_TOURNAMENT_MENU:
                 self.tournament_program()
-            elif option == OP_2:
+            elif option == OP_CHANGE_RANK:
                 self.players_menu()
-            elif option == OP_3:
+            elif option == OP_REPORT_MENU:
                 self.report_menu()
-            elif option == OP_0:
+            elif option == OP_QUIT_PROGRAM:
                 self.quit_program()
             else:
                 print("Entrez un choix valide")
@@ -43,14 +43,12 @@ class Controller:
     def tournament_program(self):
         while True:
             option = self.view.tournament_menu()
-            if option == OP_1:
+            if option == OP_START_TOURNAMENT:
                 self.start_tournament()
-            elif option == OP_2:
+            elif option == OP_CONTINUE_TOURNAMENT:
                 self.continue_tournament()
-            elif option == OP_3:
+            elif option == OP_LAUNCH_MENU:
                 self.launch_program()
-            elif option == OP_4:
-                self.player_search()
             else:
                 print("Entrez un choix valide")
 
@@ -62,29 +60,29 @@ class Controller:
     def report_menu(self):
         while True:
             option = self.view.input_report()
-            if option == OP_1:
+            if option == OP_LIST_PLAYERS_ALPHA:
                 players_list_alpha()
-            elif option == OP_2:
+            elif option == OP_LIST_PLAYERS_RANK:
                 players_list_rank()
-            elif option == OP_3:
+            elif option == OP_LIST_TOURNAMENT:
                 list_tournament()
-            elif option == OP_4:
+            elif option == OP_LIST_PLAYER_PER_TOURNALENT_ALPHA:
                 list_tournament()
                 data = self.view.input_choice()
                 players_per_tournament_alpha(int(data))
-            elif option == OP_5:
+            elif option == OP_LIST_PLAYER_PER_TOURNALENT_RANK:
                 list_tournament()
                 data = self.view.input_choice()
                 players_per_tournament_rank(int(data))
-            elif option == OP_6:
+            elif option == OP_LIST_ROUND_PER_TOURNAMENT:
                 list_tournament()
                 data = self.view.input_choice()
                 rounds_per_tournament(int(data))
-            elif option == OP_7:
+            elif option == OP_LIST_MATCH_PER_TOURNAMENT:
                 list_tournament()
                 data = self.view.input_choice()
                 matchs_per_tournament(int(data))
-            elif option == OP_0:
+            elif option == OP_MAIN_MENU:
                 self.launch_program()
             else:
                 print("Entrez un choix valide")
@@ -96,68 +94,75 @@ class Controller:
         tournament_table = self.db_tournament.table("Tournament")
         to_continue_tournament_list = []
 
-        # Selecting mode for tournament to continue
-        print("")
-        print("Liste des tournois incomplets :")
-        print("-" * len("Liste des tournois incomplets :"))
-        i = 0
-        for tournament in tournament_table:
-            if len(tournament["rounds"]) < tournament["number_round"]:
-                i += 1
-                print(i, "-", tournament["name"])
-                to_continue_tournament_list.append(tournament)
+        if len(tournament_table) == 0:
+            print("")
+            print("!! Aucun tournoi à continuer !!")
+            print("")
+        else:
+            # Selecting mode for tournament to continue
+            print("")
+            print("Liste des tournois incomplets :")
+            print("-" * len("Liste des tournois incomplets :"))
+            i = 0
+            for tournament in tournament_table:
+                if len(tournament["rounds"]) < tournament["number_round"]:
+                    i += 1
+                    print(i, "-", tournament["name"])
+                    to_continue_tournament_list.append(tournament)
 
-        if len(tournament["rounds"]) == tournament["number_round"]:
-            print("Auncun tournoi à compléter")
-            self.launch_program()
+            if len(tournament["rounds"]) == tournament["number_round"]:
+                print("Auncun tournoi à compléter")
+                self.launch_program()
 
-        print("")
-        data = input("Entrez un nombre: ")
+            print("")
+            data = input("Entrez un nombre: ")
 
-        j = (int(data) - 1)
+            j = (int(data) - 1)
 
-        tournament = to_continue_tournament_list[j]
+            tournament = to_continue_tournament_list[j]
 
-        # Retrieve the tournament
-        self.current_tournament = Tournament(tournament["name"],
-                                             tournament["place"],
-                                             tournament["start_date"],
-                                             tournament["end_date"],
-                                             tournament["description"])
-        self.current_tournament.id = tournament["id"]
-        self.current_tournament.number_round = tournament["number_round"]
-        # Player object
-        players_list = []
-        score_liste = []
-        for rounds in tournament["rounds"]:
-            for matchs in rounds["matchs"]:
-                for players in matchs:
-                    score_liste.append(players)
-        for player_id in tournament["players"]:
-            for players in self.db_players:
-                if players["id"] in player_id["id"]:
-                    player = Player(players["first_name"],
-                                    players["last_name"],
-                                    players["birth_date"],
-                                    players["gender"],
-                                    players["rank"])
-                    player.id = str(players["id"])
-                    player.score = sum(x[1] if str(player.id) == x[0] else 0
-                                       for x in score_liste)
-                    players_list.append(player)
-        self.current_tournament.players = players_list
-        # Round object
-        rounds_list = []
-        matchs_list = []
-        for sub in tournament["rounds"]:
-            rnd = Round(sub["name"], sub["start_date"], sub["end_date"])
-            for match in sub["matchs"]:
-                matchs_list.append(match)
-            rnd.matchs = matchs_list
-            rounds_list.append(rnd)
-        tournament["rounds"] = rounds_list
-        self.current_tournament.rounds = tournament["rounds"]
-        self.start_round()
+            # Retrieve the tournament
+            self.current_tournament = Tournament(tournament["name"],
+                                                 tournament["place"],
+                                                 tournament["start_date"],
+                                                 tournament["end_date"],
+                                                 tournament["description"])
+            self.current_tournament.id = tournament["id"]
+            self.current_tournament.number_round = tournament["number_round"]
+
+            # Player object
+            players_list = []
+            score_liste = []
+            for rounds in tournament["rounds"]:
+                for matchs in rounds["matchs"]:
+                    for players in matchs:
+                        score_liste.append(players)
+            for player_id in tournament["players"]:
+                for players in self.db_players:
+                    if players["id"] in player_id["id"]:
+                        player = Player(players["first_name"],
+                                        players["last_name"],
+                                        players["birth_date"],
+                                        players["gender"],
+                                        players["rank"])
+                        player.id = str(players["id"])
+                        player.score = sum(x[1] if str(player.id) == x[0] else 0
+                                           for x in score_liste)
+                        players_list.append(player)
+            self.current_tournament.players = players_list
+
+            # Round object
+            rounds_list = []
+            matchs_list = []
+            for sub in tournament["rounds"]:
+                rnd = Round(sub["name"], sub["start_date"], sub["end_date"])
+                for match in sub["matchs"]:
+                    matchs_list.append(match)
+                rnd.matchs = matchs_list
+                rounds_list.append(rnd)
+            tournament["rounds"] = rounds_list
+            self.current_tournament.rounds = tournament["rounds"]
+            self.start_round()
 
     def start_tournament(self):
         data = self.view.input_tournament()
@@ -168,14 +173,14 @@ class Controller:
                                              data["description"],
                                              data["number_round"])
         print(self.current_tournament)
+        self.save_tournament()
         self.add_players()
         self.save_players()
-        self.save_tournament()
+        self.save_tournament_players()
         self.start_round()
 
     def start_round(self):
-        while (self.current_tournament.number_round !=
-               len(self.current_tournament.rounds)):
+        while self.current_tournament.number_round != len(self.current_tournament.rounds):
             match = ()
             already_match = ()
             match_score = 0.0
@@ -261,10 +266,23 @@ class Controller:
 
         tournament_table.update(tournament, q.id == str(self.current_tournament.id))
 
-    def player_search(self):
-        for player in self.current_tournament.players:
-            print(player)
+    #def player_search(self):
+    #    for player in self.current_tournament.players:
+    #        print(player)
 
+    def save_tournament_players(self):
+        tournament_table = self.db_tournament.table("Tournament")
+        
+        for player in self.current_tournament.players:
+            serialized_player = {
+                "id": str(player.id)
+            }
+            for sub in tournament_table:
+                sub["players"].append(serialized_player)
+
+            tournament_table.update({"players": sub["players"]})
+        
+        
     def save_players(self):
         serialized_players = []
         for player in self.current_tournament.players:
@@ -278,6 +296,7 @@ class Controller:
             }
             serialized_players.append(serialized_player)
         self.db_players.insert_multiple(serialized_players)
+
 
     def generate_pairs_round_1(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: int(x.rank))
@@ -321,10 +340,24 @@ class Controller:
         return paired_list
 
     def add_score(self, match):
-        for element in match:
-            data = self.view.input_score(element[0])
-            element[0].score += float(data)
-            element[1] += float(data)
+        element_1 = match[0]
+        data_1 = float(self.view.input_score(element_1[0]))
+        element_1[0].score += data_1
+        element_1[1] += data_1
+        element_2 = match[1]
+        data_2 = float(self.view.input_score(element_2[0]))
+        while ((data_1 == 0.5 and data_2 != 0.5) or 
+               (data_1 == 0 and data_2 == 0) or 
+               (data_1 == 1 and data_2 == 1) or 
+               (data_1 == 0.5 and data_2 == 1) or 
+               (data_1 == 0.5 and data_2 == 0) or 
+               (data_1 == 1 and data_2 == 0.5) or 
+               (data_1 == 0 and data_2 == 0.5)):
+            print("Valeur incorrecte")
+            data_2 = float(self.view.input_score(element_2[0]))
+        element_2[0].score += data_2
+        element_2[1] += data_2
+    
 
     def display__final_score(self):
         print("")
