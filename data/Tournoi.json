@@ -7,34 +7,223 @@
             "end_date": "11/02/2024",
             "description": "International",
             "number_round": 4,
-            "id": "c5d46bdb-7784-4aca-ab00-4d552f973080",
+            "id": "ec78783d-b0ea-4fbd-a76d-fb68b44de4f1",
             "players": [
                 {
-                    "id": "263447ec-f8b6-494e-92fa-8574f2cd008d"
+                    "id": "c522d2d6-e4bf-4c24-9801-97f4dff7222a"
                 },
                 {
-                    "id": "bca5ada6-c109-4e6c-a22b-8fb19d3fa663"
+                    "id": "ac6510e5-4fc3-4929-bf47-cbbd1bffa0a5"
                 },
                 {
-                    "id": "a3715490-df97-439f-99ed-18beb7454e89"
+                    "id": "d2672e52-c232-4241-ae3d-78e6bcf5e608"
                 },
                 {
-                    "id": "8d541489-c807-46c7-9ffb-878bba2513e3"
+                    "id": "3b6e33ec-ec8b-48d6-ab60-b57297e2eddb"
                 },
                 {
-                    "id": "da373e51-e72f-4c51-99ea-3f3027896ab1"
+                    "id": "22c1fe5c-c38c-48b1-81b9-a874dd0e5b95"
                 },
                 {
-                    "id": "3e5dedcf-a36c-40bb-8996-d013855f4019"
+                    "id": "77a0f175-8277-454e-b440-b5a8cdfee132"
                 },
                 {
-                    "id": "bb4c5bdf-d3cd-4945-ac17-f9251cf640e1"
+                    "id": "ef3d4b5d-84d0-4eae-9f93-5c667e5d77bb"
                 },
                 {
-                    "id": "e289bbf5-5e1d-4733-a973-d8970a533953"
+                    "id": "58ba5d49-b66f-4346-aa65-cd1e9c1cffef"
                 }
             ],
-            "rounds": []
+            "rounds": [
+                {
+                    "name": "Round 1",
+                    "start_date": "2022-10-24 18:52:35",
+                    "end_date": null,
+                    "matchs": [
+                        [
+                            [
+                                "c522d2d6-e4bf-4c24-9801-97f4dff7222a",
+                                0.5
+                            ],
+                            [
+                                "22c1fe5c-c38c-48b1-81b9-a874dd0e5b95",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "ac6510e5-4fc3-4929-bf47-cbbd1bffa0a5",
+                                0.5
+                            ],
+                            [
+                                "77a0f175-8277-454e-b440-b5a8cdfee132",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "d2672e52-c232-4241-ae3d-78e6bcf5e608",
+                                0.5
+                            ],
+                            [
+                                "ef3d4b5d-84d0-4eae-9f93-5c667e5d77bb",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "3b6e33ec-ec8b-48d6-ab60-b57297e2eddb",
+                                0.5
+                            ],
+                            [
+                                "58ba5d49-b66f-4346-aa65-cd1e9c1cffef",
+                                0.5
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "Round 2",
+                    "start_date": "2022-10-24 18:52:44",
+                    "end_date": null,
+                    "matchs": [
+                        [
+                            [
+                                "c522d2d6-e4bf-4c24-9801-97f4dff7222a",
+                                0.5
+                            ],
+                            [
+                                "ac6510e5-4fc3-4929-bf47-cbbd1bffa0a5",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "d2672e52-c232-4241-ae3d-78e6bcf5e608",
+                                0.5
+                            ],
+                            [
+                                "3b6e33ec-ec8b-48d6-ab60-b57297e2eddb",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "22c1fe5c-c38c-48b1-81b9-a874dd0e5b95",
+                                0.5
+                            ],
+                            [
+                                "77a0f175-8277-454e-b440-b5a8cdfee132",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "ef3d4b5d-84d0-4eae-9f93-5c667e5d77bb",
+                                0.5
+                            ],
+                            [
+                                "58ba5d49-b66f-4346-aa65-cd1e9c1cffef",
+                                0.5
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "Round 3",
+                    "start_date": "2022-10-24 18:52:46",
+                    "end_date": null,
+                    "matchs": [
+                        [
+                            [
+                                "c522d2d6-e4bf-4c24-9801-97f4dff7222a",
+                                0.5
+                            ],
+                            [
+                                "d2672e52-c232-4241-ae3d-78e6bcf5e608",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "ac6510e5-4fc3-4929-bf47-cbbd1bffa0a5",
+                                0.5
+                            ],
+                            [
+                                "3b6e33ec-ec8b-48d6-ab60-b57297e2eddb",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "22c1fe5c-c38c-48b1-81b9-a874dd0e5b95",
+                                0.5
+                            ],
+                            [
+                                "ef3d4b5d-84d0-4eae-9f93-5c667e5d77bb",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "77a0f175-8277-454e-b440-b5a8cdfee132",
+                                0.5
+                            ],
+                            [
+                                "58ba5d49-b66f-4346-aa65-cd1e9c1cffef",
+                                0.5
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "Round 4",
+                    "start_date": "2022-10-24 18:52:48",
+                    "end_date": null,
+                    "matchs": [
+                        [
+                            [
+                                "c522d2d6-e4bf-4c24-9801-97f4dff7222a",
+                                0.5
+                            ],
+                            [
+                                "3b6e33ec-ec8b-48d6-ab60-b57297e2eddb",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "ac6510e5-4fc3-4929-bf47-cbbd1bffa0a5",
+                                0.5
+                            ],
+                            [
+                                "d2672e52-c232-4241-ae3d-78e6bcf5e608",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "22c1fe5c-c38c-48b1-81b9-a874dd0e5b95",
+                                0.5
+                            ],
+                            [
+                                "58ba5d49-b66f-4346-aa65-cd1e9c1cffef",
+                                0.5
+                            ]
+                        ],
+                        [
+                            [
+                                "77a0f175-8277-454e-b440-b5a8cdfee132",
+                                0.5
+                            ],
+                            [
+                                "ef3d4b5d-84d0-4eae-9f93-5c667e5d77bb",
+                                0.5
+                            ]
+                        ]
+                    ]
+                }
+            ]
         }
     }
 }

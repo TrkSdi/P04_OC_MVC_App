@@ -1,17 +1,14 @@
-
-from models.constant import *
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
-from report.all_players import players_list_alpha, players_list_rank
-from report.list_tournament import list_tournament
-from report.players_tourn_alpha import players_per_tournament_alpha
-from report.players_tourn_rank import players_per_tournament_rank
-from report.round_per_tournament import rounds_per_tournament
-from report.matchs_per_tournament import matchs_per_tournament
 from datetime import datetime
 from tinydb import TinyDB, Query
 from pathlib import Path
+from models.constant import (OP_CHANGE_RANK, OP_CONTINUE_TOURNAMENT, OP_LAUNCH_MENU, OP_LIST_MATCH_PER_TOURNAMENT,
+                             OP_LIST_PLAYER_PER_TOURNALENT_ALPHA, OP_LIST_PLAYER_PER_TOURNALENT_RANK,
+                             OP_LIST_PLAYERS_ALPHA, OP_LIST_PLAYERS_RANK, OP_LIST_ROUND_PER_TOURNAMENT,
+                             OP_LIST_TOURNAMENT, OP_MAIN_MENU, OP_QUIT_PROGRAM, OP_REPORT_MENU, OP_START_TOURNAMENT,
+                             OP_TOURNAMENT_MENU, LISTED_PLAYERS_NO, LISTED_PLAYERS_YES, MAX_NUM_PLAYERS)
 import json
 import sys
 
@@ -61,27 +58,27 @@ class Controller:
         while True:
             option = self.view.input_report()
             if option == OP_LIST_PLAYERS_ALPHA:
-                players_list_alpha()
+                Player.players_list_alpha()
             elif option == OP_LIST_PLAYERS_RANK:
-                players_list_rank()
+                Player.players_list_rank()
             elif option == OP_LIST_TOURNAMENT:
-                list_tournament()
+                Tournament.list_tournament()
             elif option == OP_LIST_PLAYER_PER_TOURNALENT_ALPHA:
-                list_tournament()
+                Tournament.list_tournament()
                 data = self.view.input_choice()
-                players_per_tournament_alpha(int(data))
+                Player.players_per_tournament_alpha(int(data))
             elif option == OP_LIST_PLAYER_PER_TOURNALENT_RANK:
-                list_tournament()
+                Tournament.list_tournament()
                 data = self.view.input_choice()
-                players_per_tournament_rank(int(data))
+                Player.players_per_tournament_rank(int(data))
             elif option == OP_LIST_ROUND_PER_TOURNAMENT:
-                list_tournament()
+                Tournament.list_tournament()
                 data = self.view.input_choice()
-                rounds_per_tournament(int(data))
+                Round.rounds_per_tournament(int(data))
             elif option == OP_LIST_MATCH_PER_TOURNAMENT:
-                list_tournament()
+                Tournament.list_tournament()
                 data = self.view.input_choice()
-                matchs_per_tournament(int(data))
+                Tournament.matchs_per_tournament(int(data))
             elif option == OP_MAIN_MENU:
                 self.launch_program()
             else:
@@ -174,6 +171,7 @@ class Controller:
                                              data["number_round"])
         print(self.current_tournament)
         self.save_tournament()
+        self.add_listed_players()
         self.add_players()
         self.save_players()
         self.save_tournament_players()
@@ -214,11 +212,57 @@ class Controller:
         self.launch_program()
 
     def add_players(self):
-        MAX_NUM_PLAYERS = 8
         while len(self.current_tournament.players) < MAX_NUM_PLAYERS:
             data = self.view.input_player(self.current_tournament)
             player = Player(data["last_name"], data["first_name"], data["birth_date"], data["gender"], data["rank"])
             self.current_tournament.players.append(player)
+
+    def add_listed_players(self):
+        if len(self.db_players) == 0:
+            pass
+        else:
+            while True:
+                print("")
+                print("Voulez vous rajouter un joueur existant ?")
+                print("1 - Oui")
+                print("2 - Non")
+                print("")
+                data = input("Votre choix: ")
+                print("")
+                if data == LISTED_PLAYERS_YES:
+                    self.listed_players()
+                elif data == LISTED_PLAYERS_NO:
+                    break
+                else:
+                    print("!! Choix non valide !!")
+
+    def listed_players(self):
+        db_players = TinyDB("data/Joueurs.json", indent=4)
+
+        i = 1
+        print("Liste des joueurs: ")
+        print("-" * len("Liste des joueurs: "))
+
+        for sub in db_players:
+            print(f"{i} - Nom: {sub['last_name']} / Classement: {sub['rank']}")
+            i += 1
+
+        print("")
+        data = input("Choix du joueur: ")
+        element = db_players.get(doc_id=data)
+        try:
+            player = Player(element["first_name"],
+                            element["last_name"],
+                            element["birth_date"],
+                            element["gender"],
+                            element["rank"])
+            player.id = element["id"]
+            self.current_tournament.players.append(player)
+            print("")
+            print("Le joueur a été ajouté avec succès")
+        except ValueError:
+            print("")
+            print("!! Choix non valide !!")
 
     def save_tournament(self):
         tournament_table = self.db_tournament.table("Tournament")
@@ -263,40 +307,36 @@ class Controller:
                 serialized_round["matchs"].append(([match[0][0], match[0][1]], [match[1][0], match[1][1]]))
 
         tournament["rounds"].append(serialized_round)
-
         tournament_table.update(tournament, q.id == str(self.current_tournament.id))
-
-    #def player_search(self):
-    #    for player in self.current_tournament.players:
-    #        print(player)
 
     def save_tournament_players(self):
         tournament_table = self.db_tournament.table("Tournament")
-        
         for player in self.current_tournament.players:
             serialized_player = {
                 "id": str(player.id)
             }
             for sub in tournament_table:
                 sub["players"].append(serialized_player)
-
             tournament_table.update({"players": sub["players"]})
-        
-        
-    def save_players(self):
-        serialized_players = []
-        for player in self.current_tournament.players:
-            serialized_player = {
-                "last_name": player.last_name,
-                "first_name": player.first_name,
-                "birth_date": player.birth_date,
-                "gender": player.gender,
-                "rank": player.rank,
-                "id": str(player.id)
-            }
-            serialized_players.append(serialized_player)
-        self.db_players.insert_multiple(serialized_players)
 
+    def save_players(self):
+        serialized_players_list = []
+        for player in self.current_tournament.players:
+            for sub in self.db_players:
+                if str(player.id) in sub["id"]:
+                    break
+            else:
+                serialized_player = {
+                    "last_name": player.last_name,
+                    "first_name": player.first_name,
+                    "birth_date": player.birth_date,
+                    "gender": player.gender,
+                    "rank": player.rank,
+                    "id": str(player.id)
+                }
+                serialized_players_list.append(serialized_player)
+
+        self.db_players.insert_multiple(serialized_players_list)
 
     def generate_pairs_round_1(self):
         sorted_list = sorted(self.current_tournament.players, key=lambda x: int(x.rank))
@@ -322,7 +362,9 @@ class Controller:
                 found_pair = False
                 for j in range(i+1, len(sorted_list)):
 
-                    if (sorted_list[j].id in already_selected) or ((player_1.id, sorted_list[j].id) in self.current_tournament.previous_match) or ((sorted_list[j].id, player_1.id) in self.current_tournament.previous_match):
+                    if ((sorted_list[j].id in already_selected)
+                            or ((player_1.id, sorted_list[j].id) in self.current_tournament.previous_match)
+                            or ((sorted_list[j].id, player_1.id) in self.current_tournament.previous_match)):
                         continue
                     else:
                         player_2 = sorted_list[j]
@@ -346,18 +388,17 @@ class Controller:
         element_1[1] += data_1
         element_2 = match[1]
         data_2 = float(self.view.input_score(element_2[0]))
-        while ((data_1 == 0.5 and data_2 != 0.5) or 
-               (data_1 == 0 and data_2 == 0) or 
-               (data_1 == 1 and data_2 == 1) or 
-               (data_1 == 0.5 and data_2 == 1) or 
-               (data_1 == 0.5 and data_2 == 0) or 
-               (data_1 == 1 and data_2 == 0.5) or 
-               (data_1 == 0 and data_2 == 0.5)):
+        while ((data_1 == 0.5 and data_2 != 0.5) or
+               (data_1 == 0.5 and data_2 == 0) or
+               (data_1 == 0.5 and data_2 == 1) or
+               (data_1 == 0 and data_2 == 0) or
+               (data_1 == 0 and data_2 == 0.5) or
+               (data_1 == 1 and data_2 == 0.5) or
+               (data_1 == 1 and data_2 == 1)):
             print("Valeur incorrecte")
             data_2 = float(self.view.input_score(element_2[0]))
         element_2[0].score += data_2
         element_2[1] += data_2
-    
 
     def display__final_score(self):
         print("")
@@ -369,7 +410,7 @@ class Controller:
             print(f"Nom: {player.last_name} / Score: {player.score}")
 
     def player_change_rank(self):
-        file = Path("/Users/dev/Desktop/En cours/Projet_04/Chess_Project_V2/data/Joueurs.json")
+        file = Path("data/Joueurs.json")
         data = open(file)
         isempty = file.stat().st_size == 0
         if isempty:
@@ -388,7 +429,8 @@ class Controller:
                 print("")
                 sorted_list = sorted(list_players, key=lambda x:  int(x["rank"]))
                 for player in sorted_list:
-                    print((i), "- Nom:", player["last_name"], "\nClassement:", player["rank"], "\n-----------------")
+                    print((i), "- Nom:", player["last_name"], "\nClassement:", player["rank"])
+                    print("-----------------")
                     i += 1
 
             print("")
@@ -406,4 +448,6 @@ class Controller:
 
     @staticmethod
     def end_message():
-        return print("\n=====================================\nFELICITATIONS, LE TOURNOI EST TERMINE\n=====================================")
+        return print("""\n=====================================\n
+                     FELICITATIONS, LE TOURNOI EST TERMINE\n
+                     =====================================""")
