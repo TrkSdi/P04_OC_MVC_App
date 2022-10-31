@@ -58,6 +58,12 @@ class Tournament():
 
     @staticmethod
     def matchs_per_tournament(i):
+        """_summary_
+        Generate list of matchs by tournament
+
+        Args:
+            i : select tournament
+        """
         file = Path("data/Tournoi.json")
         data = open(file)
         isempty = file.stat().st_size == 0

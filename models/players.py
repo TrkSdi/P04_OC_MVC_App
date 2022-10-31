@@ -18,6 +18,9 @@ class Player():
 
     @staticmethod
     def players_list_alpha():
+        """_summary_
+        Generate list of players sorted alphanumerically
+        """
         file = Path("data/Joueurs.json")
         data = open(file)
         isempty = file.stat().st_size == 0
@@ -48,6 +51,9 @@ class Player():
 
     @staticmethod
     def players_list_rank():
+        """_summary_
+        Generate list of players sorted by rank
+        """
         file = Path("data/Joueurs.json")
         data = open(file)
 
@@ -79,6 +85,12 @@ class Player():
 
     @staticmethod
     def players_per_tournament_alpha(i):
+        """_summary_
+        Generate list of players sorted alphanumerically by tournament
+
+        Args:
+            i : _select tournament_
+        """
         file = Path("data/Joueurs.json")
         data_players = open(file)
         isempty = file.stat().st_size == 0
@@ -134,6 +146,12 @@ class Player():
 
     @staticmethod
     def players_per_tournament_rank(i):
+        """_summary_
+        Generate list of players sorted by rank and by tournament
+
+        Args:
+            i : _select tournament_
+        """
         file = Path("data/Joueurs.json")
         data_players = open(file)
         isempty = file.stat().st_size == 0

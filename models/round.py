@@ -13,6 +13,12 @@ class Round:
 
     @staticmethod
     def rounds_per_tournament(i):
+        """_summary_
+        Generate list of rounds by tournament
+
+        Args:
+            i : _select tournament_
+        """
         file = Path("data/Tournoi.json")
         data = open(file)
         isempty = file.stat().st_size == 0

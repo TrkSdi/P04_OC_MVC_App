@@ -309,6 +309,9 @@ class Controller:
         tournament_table.update(tournament, q.id == str(self.current_tournament.id))
 
     def save_tournament_players(self):
+        """
+        Save players in tournament database
+        """
         tournament_table = self.db_tournament.table("Tournament")
         for player in self.current_tournament.players:
             serialized_player = {
@@ -319,6 +322,9 @@ class Controller:
             tournament_table.update({"players": sub["players"]})
 
     def save_players(self):
+        """
+        Save players in players database
+        """
         serialized_players_list = []
         for player in self.current_tournament.players:
             for sub in self.db_players:
