@@ -35,7 +35,7 @@ class Controller:
             elif option == OP_QUIT_PROGRAM:
                 self.quit_program()
             else:
-                print("Entrez un choix valide")
+                print("!! Choix non valide !!")
 
     def tournament_program(self):
         while True:
@@ -47,7 +47,7 @@ class Controller:
             elif option == OP_LAUNCH_MENU:
                 self.launch_program()
             else:
-                print("Entrez un choix valide")
+                print("!! Choix non valide !!")
 
     def players_menu(self):
         while True:
@@ -82,7 +82,7 @@ class Controller:
             elif option == OP_MAIN_MENU:
                 self.launch_program()
             else:
-                print("Entrez un choix valide")
+                print("!! Choix non valide !!")
 
     def quit_program(self):
         return sys.exit()
@@ -108,11 +108,11 @@ class Controller:
                     to_continue_tournament_list.append(tournament)
 
             if len(tournament["rounds"]) == tournament["number_round"]:
-                print("Auncun tournoi à compléter")
+                print("!! Auncun tournoi à compléter !!")
                 self.launch_program()
 
             print("")
-            data = input("Entrez un nombre: ")
+            data = input("Votre choix: ")
 
             j = (int(data) - 1)
 
@@ -152,7 +152,7 @@ class Controller:
             rounds_list = []
             matchs_list = []
             for sub in tournament["rounds"]:
-                rnd = Round(sub["name"], sub["start_date"], sub["end_date"])
+                rnd = Round(sub["name"], sub["start_date"])
                 for match in sub["matchs"]:
                     matchs_list.append(match)
                 rnd.matchs = matchs_list
@@ -300,7 +300,6 @@ class Controller:
             serialized_round = {
                             "name": round.name,
                             "start_date": round.start_date,
-                            "end_date": round.end_date,
                             "matchs": []
                                 }
             for match in round.matchs:
@@ -448,6 +447,6 @@ class Controller:
 
     @staticmethod
     def end_message():
-        return print("""\n=====================================\n
-                     FELICITATIONS, LE TOURNOI EST TERMINE\n
-                     =====================================""")
+        message = ("=====================================\nFELICITATIONS, LE TOURNOI EST TERMINE\n====================\
+=================")
+        return print(message)

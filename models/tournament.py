@@ -20,9 +20,9 @@ class Tournament():
         self.id = uuid.uuid4()
 
     def __str__(self):
-        return f"""\nNom du tournoi: {self.name}
-                    \nNombre de rounds: {self.number_round}
-                    \nDescription: {self.description}\n"""
+        return f"\nNom du tournoi: {self.name}\
+                    \nNombre de rounds: {self.number_round}\
+                    \nDescription: {self.description}\n"
 
     @staticmethod
     def list_tournament():
@@ -31,7 +31,7 @@ class Tournament():
         isempty = file.stat().st_size == 0
         if isempty:
             print("")
-            print("le fichier est vide")
+            print("!! Aucun tournoi dans la base de données !!")
             print("")
         else:
             data = json.load(data)
@@ -63,7 +63,7 @@ class Tournament():
         isempty = file.stat().st_size == 0
         if isempty:
             print("")
-            print("le fichier est vide")
+            print("!! Aucun tournoi dans la base de données !!")
             print("")
         else:
             data = json.load(data)

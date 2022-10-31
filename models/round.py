@@ -3,10 +3,9 @@ import json
 
 
 class Round:
-    def __init__(self, name, start_date, end_date):
+    def __init__(self, name, start_date):
         self.name = name
         self.start_date = start_date
-        self.end_date = end_date
         self.matchs = []
 
     def __str__(self):
@@ -19,7 +18,7 @@ class Round:
         isempty = file.stat().st_size == 0
         if isempty:
             print("")
-            print("le fichier est vide")
+            print("!! Aucun tournoi dans la base de données !!")
             print("")
         else:
             data = json.load(data)
@@ -29,7 +28,7 @@ class Round:
             isempty = file.stat().st_size == 0
             if isempty:
                 print("")
-                print("le fichier est vide")
+                print("!! Aucun joueur dans la base de données !!")
                 print("")
             else:
                 data_player = json.load(data_player)

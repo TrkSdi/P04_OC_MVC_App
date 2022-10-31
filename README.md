@@ -1,158 +1,23 @@
-
-# Projet 04 OC Test
-
-# Objets :
-Objets identifiés :
-
-## MODELE TOURNOI
-
-### Attribut d'instance :
-
-    > Nom
-    > Lieu
-    > Date début
-    > Date fin
-    > Joueurs = []
-    > Description
-    > Tour = NOMBRE_TOUR_DEFAULT par défaut
-    > Temps = coup rapide / blitz / bullet = choisir type de coup
-
-### Attribut de classe
-
-    > NOMBRE_TOUR_DEFAULT = 4 
-    
-
-### Méthode d'instance 
-
-#### Création nouveau tournoi
-
-    > Instanciation nouveau tournoi 
-
-#### Création nouveau joueurs
-
-    > Instanciation joueurs
-    > Ajout liste
-
-#### Création paires
-
-    > Pairs de joueurs - Méthode 1
-    > Pairs de joueurs - Méthode 2 (Un jour ne peut pas rencontrer le même joueur lors de 4 tours)
-
-#### Résultat
-
-    > Input résultat
-    > Score joueurs
-
-#### Sauvegarde
-
-    
-    > Sauvegarde / Tour 
-
-## JOUEURS
-
-### Attribut d'instance :
-
-    > Nom
-    > Prénom
-    > Date de naissance 
-    > Genre 
-    > Classement
-
-### Attribut de classe
-
-    > Score = 0
-
-### Méthode d'instance 
-
-    > Score +1  (Gagnant)
-    > Score 0   (Perdant)
-    > Score 0.5 (Match nul)
-
-# Main 
-
-> Créer nouveau tournoi 
-> Instancier + Ajout joueurs 
-> Création pairs
-> Tour 1
-> Saisir résultats
-> Sauvegarde
-> Création pairs 
-> Les mêmes joueurs ne doivent pas se rencontrer
-> Tour 2
-> Saisir résultats
-> Sauvegarde
-> Création pairs 
-> Les mêmes joueurs ne doivent pas se rencontrer
-> Tour 3
-> Saisir résultats
-> Sauvegarde
-> Création pairs 
-> Les mêmes joueurs ne doivent pas se rencontrer
-> Tour 4
-> Saisir résultats
-> Sauvegarde
-> Mise à jour classement
-> Sauvegarde
+# PROGRAMME DE GESTION DE TOURNOI D'ECHEC
 
 
+## Prérequis 
 
-# Rapport 
+Le développement du script a nécessité l'utilisation de plusieurs packages, dans ce sens il faut: 
 
-> Liste de tous les acteurs :
-    par ordre alphabétique ;
-    par classement.
-> Liste de tous les joueurs d'un tournoi :
-    par ordre alphabétique ;
-    par classement.
-> Liste de tous les tournois.
-> Liste de tous les tours d'un tournoi.
-> Liste de tous les matchs d'un tournoi.
+1. Accéder au répértoire du projet ```https://github.com/TrkSdi/P04_tarik_sadkhi_OC.git```
+2. créer un environnement  (commande création)
+``` python -m venv env ```
+3. activer l'environnement 
+``` code activer environnement ```
+4. install pacakge
+```pip install -r requirement.txt ```
 
+# Execution
 
-aa
-aa
-19/05/1983
-M
-1
-bb
-bb
-19/05/1983
-M
-2
-cc
-cc
-19/05/1983
-M
-3
-dd
-dd
-19/05/1983
-M
-4
-ee
-ee
-19/05/1983
-M
-5
-ff
-ff
-19/05/1983
-M
-6
-gg
-gg
-19/05/1983
-M
-7
-hh
-hh
-19/05/1983
-M
-8
+1. ```python __main__.py```
 
 
-A faire :
+# Générer rapport conformité PEP8 
 
-- S'assurer premier round est opérationnel 
-- Créer méthode score 
-- Penser méthode générer pairs rounds restants 
+1. flake etc etc 

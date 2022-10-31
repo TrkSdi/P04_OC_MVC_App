@@ -35,8 +35,8 @@ class Player():
 
                 sorted_list_alpha = sorted(list_players, key=lambda d: d['last_name'])
                 print("")
-                print("Liste de tous les acteurs:")
-                print("-" * len("Liste de tous les acteurs:"))
+                print("Liste de tous les joueurs:")
+                print("-" * len("Liste de tous les joueurs:"))
                 print("")
                 for dictionnary in sorted_list_alpha:
                     print("Nom:               ", dictionnary["last_name"])
@@ -66,8 +66,8 @@ class Player():
 
             sorted_list_rank = sorted(list_players, key=lambda d: int(d['rank']))
             print("")
-            print("Liste de tous les acteurs:")
-            print("-" * len("Liste de tous les acteurs:"))
+            print("Liste de tous les joueurs:")
+            print("-" * len("Liste de tous les joueurs:"))
             print("")
             for dictionnary in sorted_list_rank:
                 print("Nom:               ", dictionnary["last_name"])
@@ -84,7 +84,7 @@ class Player():
         isempty = file.stat().st_size == 0
         if isempty:
             print("")
-            print("le fichier est vide")
+            print("!! Aucun joueur dans la base de données !!")
             print("")
         else:
             file = Path("data/Tournoi.json")
@@ -92,7 +92,7 @@ class Player():
             isempty = file.stat().st_size == 0
             if isempty:
                 print("")
-                print("le fichier est vide")
+                print("!! Aucun tournoi dans la base de données !!")
                 print("")
             else:
                 data_tournament = json.load(data_tournament)
@@ -139,7 +139,7 @@ class Player():
         isempty = file.stat().st_size == 0
         if isempty:
             print("")
-            print("le fichier est vide")
+            print("!! Aucun joueur dans la base de données !!")
             print("")
         else:
             file = Path("data/Tournoi.json")
@@ -147,7 +147,7 @@ class Player():
             isempty = file.stat().st_size == 0
             if isempty:
                 print("")
-                print("le fichier est vide")
+                print("!! Aucun tournoi dans la base de données !!")
                 print("")
             else:
                 data_tournament = json.load(data_tournament)
